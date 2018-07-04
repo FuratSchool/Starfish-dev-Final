@@ -1,0 +1,60 @@
+div[class^="col-md-"] {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.specimage {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.contact-info {
+    padding: 40px 20px !important;
+}
+.contact-info p {
+    margin: 0 !important;
+    color: orange;
+    font-family: "Book Antiqua";
+    font-size: 1.3em;
+}
+
+#gmap, #pano {
+    height: 200px !important;
+}
+
+.specname {
+    font-family: Simplifica;
+    color: #25a096;
+    font-size: 5em !important;
+}
+
+.spectitle {
+color: orange;
+    font-family: "Book Antiqua";
+    font-weight: 100 !important;
+}
+.specialismtitle {
+    text-align: center;
+    color: #25a096;
+    font-family: Simplifica;
+    font-size: 3em;
+}
+
+.list-block {
+    min-height: 200px !important;
+}
+.star-list {
+    list-style-image: url("star.png");
+}
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #wrapper, #wrapper * {
+        visibility: visible;
+    }
+    #wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}

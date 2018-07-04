@@ -1,0 +1,47 @@
+<?php
+namespace Database\Seeds;
+
+use Illuminate\Database\Seeder;
+
+/**
+ * Class DatabaseSeeder
+ * @package Database\Seeds
+ */
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * The critical seeders are:
+     *
+     * 1.   AccessesTableSeeder,
+     *
+     * 2.   GroupsTableSeeder,
+     *
+     * 3    UsersTableSeeder.
+     *
+     * The other seeders are used for test data
+     *
+     * @see AccessesTableSeeder
+     * @see GroupsTableSeeder
+     * @see UsersTableSeeder
+     *
+     * @return void
+     */
+    public function run() {
+        echo "\nStarting seeders\n";
+        Auth::attempt(['username' => 'admin', 'password' => 'admin']);
+        $start = microtime(true);
+        $this->call(AccessesTableSeeder::class);
+        $this->call(GroupsTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        $this->call(TherapiesTableSeeder::class);
+        $this->call(ComplaintsTableSeeder::class);
+        $this->call(SpecialistsTableSeeder::class);
+        $this->call(ImagesTableSeeder::class);
+        $this->call(SpecialismsTableSeeder::class);
+        $this->call(DiverseTableSeeder::class);
+        echo "\nSeeders finished in  ".round((microtime(true) - $start), 2)." seconds";
+    }
+}
+

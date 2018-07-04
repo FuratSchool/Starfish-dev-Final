@@ -1,0 +1,68 @@
+route,entry,minLOA
+admin.diverse.index,Diversen,1
+admin.diverse.create,Diversen aanmaken,1
+admin.diverse.store,Diversen opslaan,1
+admin.diverse.show,Diversen weergeven,1
+admin.diverse.destroy,Diversen verwijderen,2
+admin.diverse.update,Diversen updaten,2
+admin.diverse.edit,Diversen bewerken,2
+admin.umgmt.index,Gebruikers,3
+admin.umgmt.store,Gebruikers opslaan,3
+admin.umgmt.create,Gebruikers aanmaken,3
+admin.umgmt.destroy,Gebruikers verwijderen,4
+admin.umgmt.show,Gebruikers weergeven,3
+admin.umgmt.update,Gebruikers updaten,3
+admin.umgmt.activate,Gebruikers activeren,4
+admin.umgmt.edit,Gebruikers bewerken,3
+admin.umgmt.deactivate,Gebruikers activeren,3
+admin.umgmt.restore,Gebruikers herstellen,3
+admin.umgmt.access,Gebruikers toegang beheren,4
+admin.umgmt.storeAccess,Gebruikers toegang opslaan,4
+admin.umgmt.forget,Gebruikers vergeten,4
+admin.groups.store,Groepen opslaan,2
+admin.groups.create,Groepen aanmaken,2
+admin.groups.destroy,Groepen verwijderen,3
+admin.groups.show,Groepen weergeven,1
+admin.groups.update,Groepen updaten,2
+admin.groups.edit,Groepen bewerken,2
+admin.complaints.index,Klachten,1
+admin.complaints.store,Klachten opslaan,1
+admin.complaints.create,Klachten aanmaken,1
+admin.complaints.destroy,Klachten verwijderen,2
+admin.complaints.show,Klachten weergeven,1
+admin.complaints.update,Klachten updaten,2
+admin.complaints.edit,Klachten bewerken,2
+admin.logs.index,Logboeken,3
+admin.specialisms.index,Werkgebieden,1
+admin.specialisms.create,Werkgebieden aanmaken,1
+admin.specialisms.store,Werkgebieden opslaan,1
+admin.specialisms.destroy,Werkgebieden verwijderen,2
+admin.specialisms.show,Werkgebieden weergeven,1
+admin.specialisms.update,Werkgebieden updaten,2
+admin.specialisms.edit,Werkgebieden bewerken,2
+admin.specialists.index,Specialisten,1
+admin.specialists.create,Specialisten aanmaken,1
+admin.specialists.store,Speciaisten opslaan,1
+admin.specialists.destroy,Specialisten verwijderen,2
+admin.specialists.update,Specialisten updaten,2
+admin.specialists.show,Specialisten weergeven,1
+admin.specialists.edit,Specialisten bewerken,2
+admin.specialists.restore,Specialisten herstellen,3
+admin.specialists.forget,Specialisten vergeten,3
+admin.stats.index,Statistieken,4
+admin.tasks.index,Taken,1
+admin.tasks.create,Taken aanmaken,3
+admin.tasks.store,Taken opslaan,3
+admin.tasks.update,Taken updaten,3
+admin.tasks.edit,Taken bewerken,3
+admin.tasks.destroy,Taken archiveren,3
+admin.tasks.forget,Taken verwijderen,3
+admin.therapies.index,Therapieen,1
+admin.therapies.store,Therapieen opslaan,1
+admin.therapies.create,Therapieen aanmaken,1
+admin.therapies.update,Therapieen updaten,2
+admin.therapies.show,Therapieen weergeven,1
+admin.therapies.destroy,Therapieen verwijderen,2
+admin.therapies.edit,Therapieen bewerken,2
+admin.webmaster.index,Webmaster,4
+admin.webmaster.batch,Webmaster,4

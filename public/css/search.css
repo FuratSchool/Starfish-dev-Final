@@ -1,0 +1,197 @@
+
+.spec {
+    height: inherit !important;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.row:nth-child(odd) .spec:nth-child(odd){
+    background-color: #e6e6e6;
+}
+.row:nth-child(odd) .spec:nth-child(even){
+    background-color: lightgray;
+}
+.row:nth-child(even) .spec:nth-child(odd){
+    background-color: lightgray;
+}
+.row:nth-child(even) .spec:nth-child(even){
+    background-color: #e6e6e6;
+}
+tr[data-href]:hover, div[data-href]:hover {
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+tr[data-href]:active, div[data-href]:active {
+    background-color: #e3e3e3;
+}
+#specinfo {
+    padding:  10px !important;
+}
+
+#specinfo p {
+    margin: 5px !important;
+    padding: 0 !important;
+}
+.spec_image {
+    width: 100%;
+    margin: 5px;
+    display: inline-block !important;
+    vertical-align: middle;
+}
+.specialist {
+    padding: 5px;
+    word-wrap: break-word;
+}
+.checkbox {
+    margin: 1vw !important;
+}
+/** Range Slider**/
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    margin: 6px 0;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 9px;
+    cursor: pointer;
+    box-shadow: 0 0 0 #000000, 0 0 0 #0d0d0d;
+    background: white;
+    border-radius: 25px;
+    border: 0 solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+    border: 0 solid #000000;
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    background: #dbe3ff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -5.7px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ebebeb;
+}
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 9px;
+    cursor: pointer;
+    box-shadow: 0 0 0 #000000, 0 0 0 #0d0d0d;
+    background: white;
+    border-radius: 25px;
+    border: 0 solid #010101;
+}
+input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+    border: 0 solid #000000;
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    background: #dbe3ff;
+    cursor: pointer;
+}
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 9px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #cdcdcd;
+    border: 0 solid #010101;
+    border-radius: 50px;
+    box-shadow: 0 0 0 #000000, 0 0 0 #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+    background: #dcdcdc;
+    border: 0 solid #010101;
+    border-radius: 50px;
+    box-shadow: 0 0 0 #000000, 0 0 0 #0d0d0d;
+}
+
+/*noinspection ALL*/
+input[type=range]::-ms-thumb {
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+    border: 0 solid #000000;
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    background: #dbe3ff;
+    cursor: pointer;
+    height: 9px;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #dcdcdc;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #ebebeb;
+}
+#gmap {
+    width: 100%;
+    height: 300px;
+}
+.btn-search {
+    font-family: "Book Antiqua";
+    font-size: 2em;
+    background-color: #16e5d4;
+    color: white;
+    padding: 5px 15px;
+    margin-bottom: 10px;
+}
+
+label {
+    font-family: "Bookman Old Style";
+}
+.pagination li a, .pagination li span{
+    color: white !important;
+    background-color: #16e5d4 !important;
+}
+.pagination li.active span {
+    border: solid 3px teal !important;
+}
+.noresultshead {
+
+}
+
+.spec_item {
+    width: 100% ;
+    text-align: center !important;
+}
+.spec_item::after {
+    content: "/";
+}
+.spec_item:last-child::after {
+    content: "";
+}
+@media only screen and (min-width: 768px) {
+    #specinfo p.text-center {
+        font-size: 0.8vw !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #filter {
+    display: none;
+    }
+
+    .spec {
+        display: block;
+    }
+
+    .spec_image {
+        margin: 0 !important;
+        padding: 20px;
+    }
+
+    #toggle_filter {
+        margin-bottom: 0 !important;
+    }
+}

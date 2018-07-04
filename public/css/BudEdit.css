@@ -1,0 +1,158 @@
+a[id^=heading], a[id^=ins] {
+    padding: 9px 5px !important;
+    background-color: #2F3133 !important;
+    color: white !important;
+}
+
+/*noinspection ALL*/
+a[id^=heading]:hover, a[id^=ins]:hover {
+    background-image: none !important;
+    background-color: #4E4E4E !important;
+}
+.modal-xl {
+    width: 75% !important;
+}
+
+.btn-toolbar {
+    margin-bottom: 1em !important;
+}
+.btn-toolbar:last-of-type {
+    margin-bottom: 2em !important;
+}
+
+#storyInput {
+    height: 500px;
+    overflow-y: scroll;
+    padding: 1em 2em !important;
+}
+.modal-content, .fa-times {
+    background-color: #2F3133 !important;
+    color: white !important;
+}
+
+.modal-header, .modal-footer {
+    border-color: #2F3133 !important;
+}
+
+.modal .fa, .modal .caret {
+    color: white !important;
+}
+button[id^=heading] {
+    font-size: 22px !important;
+    padding: 7px 14px !important;
+}
+.modal .btn-action {
+    color: white !important;
+    background-color: #4E4E4E !important;
+}
+.modal .btn-action:hover {
+    background-color: #6E6E6E !important;
+}
+
+.modal .dropdown-menu {
+    background-color: #2F3133 !important;
+    padding: 0 !important;
+}
+a[id^=ins]{
+    padding: 9px 9px !important;
+
+    font-size: 1.5em !important;
+}
+.modal .open button  {
+    color: white !important;
+}
+
+.modal kbd {
+    color: white;
+    background-color: #4F5153;
+}
+.switch-wrapper {
+    margin-right: 20px !important;
+}
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 88px;
+    height: 46px;
+    margin-bottom: 0 !important;
+
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    -webkit-transition: .4s;
+    transition: .4s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4px 0 6px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 38px;
+    width: 42px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #2F3133;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(38px);
+    -ms-transform: translateX(38px);
+    transform: translateX(38px);
+}
+
+.slider > span {
+    color: #2196F3;
+}
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.text-bold {
+    font-weight: bold !important;
+}
+
+.text-italic {
+    font-style: italic !important;
+}
+
+.text-underlined {
+    text-decoration: underline;
+}
+
+.text-strikethrough {
+    text-decoration: line-through;
+}
+
+.text-understrike {
+    text-decoration: underline line-through;
+}

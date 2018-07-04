@@ -1,0 +1,692 @@
+commit 789c4c752a8a416bc6d15ed59add289c6fc50155
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Jan 10 12:09:54 2018 +0100
+
+    Dont forget to commit bois
+
+commit b1f8f42a007e61cb357a2011f9b41ac36511926e
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Dec 21 16:59:42 2017 +0100
+
+    [fix] Rechten systeem
+    
+    Er was een bug aanwezig in het systeem waardoor mensen die niet de juiste rechten/toegang hadden buiten de knoppen op de website om via de URL balk op pagina’s konden komen, na analyse van het probleem bleek dat er geen controle werd uitgevoerd of de gebruiker wel toegang had als deze een pagina opvroeg, dit is op de volgende manier opgelost:
+    
+    Voorheen werkte de toegangen via“keys”,een omschrijving van de actie/pagina, beheerd. Dit zorgde ervoor dat voor elke pagina een aparte “key” moest worden aangemaakt. Aangezien dit project een REST applicatie is heb ik dat gewijzigd, nu wordt de toegang bepaald door te kijken of de gebruiker toegang heeft tot de naam van de route, lees: URI, op te halen vanuit de aanvraag naar de server, deze te vergelijken met de aangewezen rechten//toegangen van de gebruiker en als de gevraagd route in deze lijst van rechten zit wordt toegang tot de pagina verleent. Verder zijn er in het systeem 4 hoofdrollen, Standaard, Moderatoren, Administratoren en webmasters, elke van deze 4 hoofdrollen heeft een set van standaard rechten, deze worden toegekend als de gebruiker wordt aangemaakt, verder is de manier van ophalen van de rechten van de ingelogde gebruiker gewijzigd, voorheen werd dit vergeleken met de gegevens in de database, nu worden deze gegevens na het succesvolle inloggen opgehaald en in de browsersessie opgeslagen, zodat er niet bij elke keer dat er wordt gecontroleerd (dit is per pagina standaard 20 keer) een connectie moet worden gemaakt met de database. De sessie wordt geleegd zodra de gebruiker uitlogt. Het is niet mogelijk de rechten van een ingelogde gebruiker te wijzigen aangezien dit kan lijden tot verlies van data.
+
+commit 41ec6800b718cc2dac20c01e0095a4c84cdb4fd6
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Dec 21 16:47:13 2017 +0100
+
+    Logboekregistraties
+    
+    Het bestaande registratie systeem is verder uitgebreid, nu worden ook acties die gericht zijn op; taken, groepen en specialisten vastgelegd, verder is er op de pagina "Logs" een overzicht te vinden per logboek avn de gebeurtenissen. het logboek systeem zal in de toekomst verder worden uitgebreid, dit is nu nog niet mogelijk omdat de structuur voor de missende onderdelen ontbreekt en voortijdige implementatie van de registraties zou voor incidenten zorgen
+
+commit b1cc6ca6456b4a7a76d73bfc39d43acc34d2e0ab
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Dec 21 16:42:56 2017 +0100
+
+    Taken systeem
+    
+    Het taken systeem is een vrij eenvoudig systeem, het is een BREAD systeem, met een aantal aanpassingen.
+    
+    een gebruiker kan taken aanmaken, de gebruiker kan hierbij een titel, beschrijving, type, deadline invullen, in het zelfde scherm kan de gebruiker taken delegeren naar gebruikers of groepen.
+    
+    de gebruiker die de taak heeft aangemaakt kan de taak aanpassen, alle velden zijn aanpasbaar,
+    
+    de gebruikers betrokken met de taak (de gebruiker die de taak heeft en gemaakt en de gebruikers die aangewezen zijn aan de taak) kunnen als de taak een stadia verder in het proces is (niet begonnen, wordt uitgevoerd, uitgvoerd) op de knop "status opwaarderen" om de status te veranderen naar de volgende status, als de taak is uitgevoerd kan de gebruiker die de taak heeft aangemaakt deze afronden of aangeven dat er revisie nodig is, als er revisie nodig is wordt dit aangegeven in het status vak, als de taak gereviseerd is kan een van de betrokken gebruikers deze weer op "uitgevoerd" zetten en de gebruiker die de taak heeft aangemaakt kan deze dan afronden of weer markeren met "revisie nodig"
+
+commit d981e2137f43b5e36113248a7859a72865935cd8
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Dec 21 16:33:23 2017 +0100
+
+    Berichten systeem
+    
+    Het berichten systeem;
+    
+    Het berichten systeem bestaat uit 2 delen, het berichten systeem zelf en het groepen systeem,
+    
+    het groepen systeem -> het groepen systeem is een systeem waarmee groepen aangemaakt kunnen worden waar berichten naar gestuurd kunnen worden en taken aan aangewezen worden, het systeem werkt volgens het BREAD protocol, dit betekent dat de groepen weergegeven kunnen worden, groepen geinspecteerd kunnen worden, groepen aangepast kunnen worden, groepen aangemaakt kunnen worden en groepen verwijderd kunnen worden, ook is de functie om vanaf een groepspagina een bericht naar een groep te kunnen worden
+    
+    het berichten systeem -> het berichten systeem werkt zoals de meeste mail programmas, de gebruiker maakt een bericht met onderwerp, tekst en ontvangers, deze worden dan versleuted en opgeslagen, de ontvangers zien het bericht dan in hun inbox verschijnen, ontvangers van het bericht kunnen via een knop reageren op het bericht, dan wordt het onderwerp en de ontvanger ingevuld en vastgezet, berichten kunnen niet worden verwijderd, alleen gearchiveerd, dit omdat de informatie in een bericht nog steeds nodig kan zijn voor een zender
+
+commit f4d703a1a2678c84778509ad58ba8df8dfb436b6
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Dec 21 16:19:16 2017 +0100
+
+    clean up 3
+
+commit 59587306392d7b1e31539c8804d99dfb8c5423ad
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Dec 21 16:18:13 2017 +0100
+
+    clean up 2
+
+commit 865cd6720b9aa2d753574a6f626650be69914950
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Dec 21 15:39:01 2017 +0100
+
+    clean up
+
+commit e633c2dbfd2e1c08b697e4c19eaed6cc148c541f
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Dec 11 10:32:14 2017 +0100
+
+    Dont checkout without commit kids, stay safe
+
+commit f730ac2d231b4608575cdbe2db28ee43b8373b23
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Dec 6 16:59:36 2017 +0100
+
+    [NIET ROLLBACKEN VOOR DIT PUNT] CODE CLEAN UP
+
+commit 795de4df907ff914d68e1b2f508a295e1a6b621b
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Dec 6 16:58:43 2017 +0100
+
+    Added body for specialist store method
+
+commit 74fe6e6d40192843c97b2cddeed58c69acd1b41e
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Nov 29 10:29:08 2017 +0100
+
+    Started working on specialist validation
+
+commit 38ac731a32b9e99c67790fb8160e0a510d945349
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 23 16:29:56 2017 +0100
+
+    Extended specialist creation form
+
+commit 9f0093f6b5cd5f0d8b9c8aac4d6db2c9181d996e
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 23 15:20:31 2017 +0100
+
+    NEE JE MAG MN MAIL GEGEVENS NIET MEER
+
+commit 51b21c1784d41098a2c57bf8716e0f962e304391
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 23 14:46:35 2017 +0100
+
+    Whoopsydaisy
+
+commit 8c902468976d5114baee90f7bb29b7bdfc47021e
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 23 14:14:45 2017 +0100
+
+    ..
+
+commit 82f83e19c28d93ddb4a84c21e67e6422483988f6
+Merge: fbd56af 7caf021
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 23 14:13:51 2017 +0100
+
+    Merge remote-tracking branch 'origin/jim-dev' into jim-dev
+
+commit 7caf0212ef921149a933634223cc2ecdad17d0c0
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 23 14:12:35 2017 +0100
+
+    Update readme.md
+
+commit fbd56af19e4df8854af36bec6009e2a50b043afe
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 23 14:10:25 2017 +0100
+
+    markdown's a bitch
+
+commit c46e3ee1b9c2031c97dfa56fac14e06008beb47f
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 23 14:06:45 2017 +0100
+
+    So done rn
+
+commit 18eb42ae32d0c8495758dc248115744c522ab285
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 23 14:05:38 2017 +0100
+
+    Again quick fix
+
+commit 843258c8f1447eb3fcd58431a114a130c3794cc3
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 23 14:04:53 2017 +0100
+
+    Quick fix
+
+commit 5bd6d17793c74f14c303826d1e2cf3b9240e8b60
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 23 14:03:25 2017 +0100
+
+    Pulled in everything locally
+
+commit bc9a6dfba9f5ca8f74b453de42061347255c3c72
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 23 14:03:16 2017 +0100
+
+    Updated things for dist
+
+commit 4e3774d13a43db1c1b28d726fb8bfaa30c681378
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 23 14:02:02 2017 +0100
+
+    Changed Markdown editor to WYSIWYG
+
+commit 12d2d21300da4f2874682187b761396326707315
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Thu Nov 16 09:55:35 2017 +0100
+
+    Removed spellchecker (Stupid piece of shit)
+
+commit 01925f5948cb53f4b5a4e450861d5db96c480c39
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Nov 15 12:49:05 2017 +0100
+
+    Added spellchecker
+
+commit e6d9509dbfad8398271ae8efd395bd6f3f0f6dcc
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Nov 15 09:26:24 2017 +0100
+
+    Started working on a Markdown Editor
+    
+    The puprose of the editor is to let mods and admins make better articles with markdown formatting
+
+commit 0347599d6fb5d697af569364dd70a710ef8d9b65
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Tue Nov 7 11:49:49 2017 +0100
+
+    backup
+
+commit 39e03ab8a842b02dd9a38ab86bd44e4c738d5aa1
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Nov 1 08:02:44 2017 +0100
+
+    Updates to teh specialist admin workspace, changes include listing and creating (WIP)
+
+commit 4d2a34230db6cd2249cfadd7916da65eb7144876
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 20:41:35 2017 +0100
+
+    changed form method to route instead of hardcode
+
+commit e43de92960e5ed433434a956ae251750f7a3ca89
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 20:39:14 2017 +0100
+
+    Removed old Specialist views
+
+commit 7dacb7f9669b803634355d1a31eb59147a72493c
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:51:52 2017 +0100
+
+    Added admin routes
+
+commit 24130d8d116df2329ed56caf8b5dd74d239cc407
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:51:30 2017 +0100
+
+    Updated look and feel
+
+commit 107c0274891482e3ce3dd400b15db70369931918
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:50:53 2017 +0100
+
+    Updated user management
+
+commit f33572eec85524205eb8edd606d8e07bc642ff46
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:47:51 2017 +0100
+
+    Added custom morphmap
+
+commit fde28978b7401088d01300ab1a571973ac333e8c
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:41:11 2017 +0100
+
+    Added soft deleting
+
+commit b5e99791e43169eabfed364e3ddc4a177efb20bd
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:40:30 2017 +0100
+
+    Added toe hinting for models
+
+commit 602d20278e99e024f7dfcec7198d6d8fef1c6a93
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:39:58 2017 +0100
+
+    Changed app name
+
+commit 00eb24ab7216545fa3b37e54d1bbee60fb70f46f
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:39:42 2017 +0100
+
+    Added favicons
+
+commit 3ce921b12dd87701fa275c2fabc699c40424b50a
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:37:28 2017 +0100
+
+    Added Tasks (WIP)
+
+commit fd096a5036343af6c9ca4a8409ef2dbb98c42d21
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:35:29 2017 +0100
+
+    Added access roles
+
+commit 594402a7f759892c5d2d8c46645419c1be55bf24
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:31:30 2017 +0100
+
+    Updated .gitignore
+
+commit e22b248982b25c23b55f3acbf9a6e53ba7c45ea0
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:31:10 2017 +0100
+
+    Added user filtering
+
+commit e207bfe8a49dc4af9d06c532d99ccc072c1f7a15
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:20:04 2017 +0100
+
+    Added password recovery
+
+commit d92015a835adf570349016e54c14dec6870031ce
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:01:41 2017 +0100
+
+    Updated login system
+    
+    new way of message display
+
+commit cb6e53486d02b55891c6a28ea91286af432f0484
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 13:01:05 2017 +0100
+
+    Added guzzle
+    
+    Added guzzle for HTTP logging
+
+commit 18afe94ee5873e96ed7f90989c29ee78f5dbbad2
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 12:59:43 2017 +0100
+
+    updated gitignore
+
+commit 7d989715babde580218303be8097e3f2c8852502
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 12:58:49 2017 +0100
+
+    Created all admin controllers
+
+commit e1a8cbec57278fe3d3a045d23cfdff73d9082587
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 12:56:12 2017 +0100
+
+    White space
+
+commit ecbde49acf75409babe696269731e6c89ff44f32
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 12:55:53 2017 +0100
+
+    Added password recovery
+
+commit 534d33ada4e3ba4285a90cc1ac00a4937c890e9a
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 30 12:55:13 2017 +0100
+
+    Remove old AdminSpecialistController from git
+
+commit bbc0db07899e296663f184fdf4eda4b6e176f4e8
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Oct 23 08:48:19 2017 +0200
+
+    Added User management and Message system (WIP)
+
+commit b26272a48ab10b939301a7292d619601eb46219d
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 17:42:15 2017 +0200
+
+    Diverse fixes en updates
+    
+    Filter iets verbeterd,kleine typo gefixt en de overige specialismes van een specialist worden nu ook weer gegeven
+
+commit 1d4f1644488815c387ca5cb71109575a6b009cfa
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 17:41:03 2017 +0200
+
+    Specialisme uit specialisten verwijderd
+    
+    Omdat de specialismes nu allemaal vanuit de specialisme tabel worden gehaald is dit veld overbodig in de specialisten tabel
+
+commit 3271c36b30723cbf1f6e13747b48430b097a251d
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 17:40:24 2017 +0200
+
+    Specialismes werken nu met prioriteit
+    
+    Elke koppeling van Specialist aan specialisme heeft nu een prio, de prio geeft aan waar de speciaist het beste in is
+
+commit 1cc29e07766c9f82ec318d363b4b16618b88726c
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 17:38:59 2017 +0200
+
+    Search controller update
+    
+    de search controller registreert nu waar iemand vandaan komt, als dit de homepage is word er geen rekening gehouden met de locatie
+
+commit ff302be2635d47f20e9580991802bce2607e3f14
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 17:38:02 2017 +0200
+
+    Breadcrump update
+    
+    Nieuwe breadcrumbs toegevoegd
+
+commit 0fd12d5b2de435de19f5a995b4d2b2be70d01b0f
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 17:37:43 2017 +0200
+
+    Breadcrumb fix
+    
+    de verkeerde breadcrumb werd gerenderd, en nu niet meer
+
+commit 933c87b30bdec9e81c3d20340b5dd1db82e38030
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 17:36:45 2017 +0200
+
+    Test route toegevoegd
+    
+    Makkelijk om snel php te testen
+
+commit b5c12085ab012a4c5403c360e34e4fd9dc70ba6e
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 17:36:09 2017 +0200
+
+    Debugbar toegevoegd
+    
+    Maakt het leven zoveel makkelijker
+
+commit 6e7632fdd3ed1ccd7f076717484fa53645f8257e
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 17:35:40 2017 +0200
+
+    Bericht over een aantal commits
+    
+    Lees maar gewoon
+
+commit 75103d36cdd02cb4f730bec541f342f9aba23204
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 17:35:18 2017 +0200
+
+    Typefouten gefixt
+    
+    Nieuwe class namen toegepast en wat typefouten gecorrigeerd
+
+commit 4e736cd373117ec8206b4d2883eabc5ab7a16e21
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 17:33:58 2017 +0200
+
+    Custom Query Builder
+    
+    Custom builder toegevoegd voor extra functionaliteit
+
+commit 7afa2b6e16cbb3a5e2d0bf929a4077db0968de59
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 09:05:38 2017 +0200
+
+    Revert "Revert "ComplaintController aangemaakt""
+    
+    This reverts commit 8b6c7f4c1cd9c6b954cec635e0f599aaa566ea3f.
+
+commit 8b6c7f4c1cd9c6b954cec635e0f599aaa566ea3f
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 09:04:26 2017 +0200
+
+    Revert "ComplaintController aangemaakt"
+    
+    This reverts commit 3befa2dbe62a17fb79d33ba2218a54797a7b5674.
+
+commit 3befa2dbe62a17fb79d33ba2218a54797a7b5674
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Wed Sep 27 09:04:06 2017 +0200
+
+    ComplaintController aangemaakt
+    
+    Deze controller handeld verzoeken af voor klachten, de functie index laat een lijst van alle klachten zen en de functie show laat een klacht zien
+
+commit 557d60a10e59fc78771b5a98c16c076dc431d900
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:40:56 2017 +0200
+
+    added street view
+
+commit 3ce2bcd874a2814672ee08d731a73c2250bff29c
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:40:38 2017 +0200
+
+    changed routing to a more conventional way
+
+commit 2a3685f8f38d6f4f6be88063623e297dfa8cdd22
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:40:14 2017 +0200
+
+    updated css to work with the new design
+
+commit eb7d2f41985df055818130de2e5159076520f118
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:39:52 2017 +0200
+
+    changed the complete layout and added google maps streetview
+
+commit c21bbd501498535d76496637b8ae7b07c934ec48
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:39:04 2017 +0200
+
+    added pagination and changed search to now work by specialism instead of name
+
+commit 445fd8030bcda8854178667c680afe29d8716eff
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:38:21 2017 +0200
+
+    minor fixes
+
+commit 1a063322870ed2191baffa3c0196e999770e70b8
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:37:59 2017 +0200
+
+    updated the css to the new design
+
+commit 689ac602e995ba58fa3c4009043e9674d1a9dc2f
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:37:41 2017 +0200
+
+    changed the complete layout and design of the search result page and changed to way filtering works
+
+commit e6dd22e6d26e6a2e7c53a7c8fb18a0182b3f9ee2
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:37:10 2017 +0200
+
+    Build a nav bar (which i dont even use now)
+
+commit e50edf60829af39d2b715f354eae85ed628daca6
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:36:46 2017 +0200
+
+    Made new master stylesheet because the old one was outdated
+
+commit a07666fb3f1e2d0f41e17619463a748cdadfffa5
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:35:57 2017 +0200
+
+    Made star for lists
+
+commit 65b5c54b908e726af30f5c63892d56a31ea87604
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:35:36 2017 +0200
+
+    added routing for tests
+
+commit 72a142166877ec7fe845250766dd1e55014c5a58
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:35:08 2017 +0200
+
+    updated base.blade.php to this because of naming conventions
+
+commit 28c61154a4b1866e2e2a9c576e553b540255bfcd
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:34:37 2017 +0200
+
+    removed category filtering
+
+commit 68d8e7e7124c58db2c194190302bd0b4f8f290cb
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:34:18 2017 +0200
+
+    fixed the favicon
+
+commit 83bc82b00f005505d610f1c67fa3d0ef5b75b5da
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:33:06 2017 +0200
+
+    Updated footer to look more like the rest of the site
+
+commit 41fc5b3a431d4eba72c54c6a171aff339fe9726e
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:32:44 2017 +0200
+
+    Added/updated models for pivotting
+
+commit 7835201de927e950d663020c439f8e23855a7478
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:32:03 2017 +0200
+
+    Added breadcrumbs to composer
+
+commit 92ca8a27a1c65c3276639960efc99dc511a2d058
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:31:30 2017 +0200
+
+    Added fonts for use
+
+commit db6e855d703fe4701ecc535386c41998315e41f3
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:31:07 2017 +0200
+
+    Increased seeding capacity and added seeding for pivot tables
+
+commit 9cef9532fc0117d587be5bed78d592cebecfa268
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:29:36 2017 +0200
+
+    restructured the whole site layout to make more sense
+
+commit 17f64a108c8ae395e95c3b2e4c633c71f56be9df
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:28:57 2017 +0200
+
+    Added breadcrumbs
+
+commit 97bf94e6c024d6970474ccbd818535eecb8c5f20
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Fri Sep 22 09:28:26 2017 +0200
+
+    Updated migrations to contain correct naming, and renamed some tables/columns to allow easier pivotting
+
+commit 199c5b89e166bd2775ba4e9bb7204f4cd17a5fad
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Sep 18 12:58:31 2017 +0200
+
+    Nederlandse error bercihten ingevoerd + in de view toegevoegd wat de vereiste van een veld zijn
+
+commit 2c4129dc24d1dd250d6c01387f16236ba069f44e
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Sep 18 12:57:54 2017 +0200
+
+    code cleanup
+
+commit 4b7d1855708f089627374a5fdd1a579226c4d904
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Sep 18 11:44:34 2017 +0200
+
+    [FOR REAL THIS TIME] Fixed latitude and longtitude retrieval and storage
+
+commit 77556b2c8604b1bea55e0dfa0b30e995ecf7ced9
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Sep 18 11:38:39 2017 +0200
+
+    Fixed latitude and longtitude retrieval and storage
+
+commit c31ff8ace4bd38b89e5f114618b34be355c11c03
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Sep 18 10:09:49 2017 +0200
+
+    ignore this
+
+commit e503468e3abadcc6053e904ec3b9c6e9e23be67f
+Author: TheAnarchoX <jimdvries@gmail.com>
+Date:   Mon Sep 18 09:06:30 2017 +0200
+
+    Location search update
+
+commit cef0076983e110577e502f20679a97327f661d1c
+Author: TheAnarchoX <denknupostief@gmail.com>
+Date:   Fri Sep 15 10:14:44 2017 +0200
+
+    Cookiewall probleem opgelost: cookie wall toonde niet goed
+
+commit cc7bb0e8f7aed7d354b7079b874db09dde32e0bd
+Author: TheAnarchoX <denknupostief@gmail.com>
+Date:   Thu Sep 14 16:35:20 2017 +0200
+
+    Functie toegevoegd die het zoeken op locatie niet verplicht maakt, als de input die dit activeert uit staat wordt de kaart ook niet weer gegeven
+
+commit b1c300cb2450749140d489c14b61ae094e295bce
+Author: TheAnarchoX <denknupostief@gmail.com>
+Date:   Thu Sep 14 16:05:40 2017 +0200
+
+    Cookie balk toegevoegd op eerste bezoek van de website zodat de cookies voor het onthouden van de gebruikerslocatie mogen worden gebruikt volgens EU-richtlijnen
+
+commit e9b96e1cf1c70d2f3b4e9ebebf7065dcd350ffc3
+Author: TheAnarchoX <denknupostief@gmail.com>
+Date:   Thu Sep 14 13:45:46 2017 +0200
+
+    "rollback" because account works
+
+commit 78b9e968b18851e51c1f0e7e3f7499f04d83b800
+Author: TheAnarchoX <denknupostief@gmail.com>
+Date:   Thu Sep 14 13:44:29 2017 +0200
+
+    testing account again
+
+commit 7c899a43d2c5bb2f9f14dc0ba126d92e3c926352
+Author: MyStarfish <denknupostief@gmail.com>
+Date:   Thu Sep 14 13:40:04 2017 +0200
+
+    testing account
+
+commit 838265d072386cdbb605287feccab1d7168aae19
+Author: MyStarfish <denknupostief@gmail.com>
+Date:   Thu Sep 14 13:33:22 2017 +0200
+
+    testing again
+
+commit 23251449eb15fdbb39bdc0342b411f4c3b056771
+Author: MyStarfish <denknupostief@gmail.com>
+Date:   Thu Sep 14 13:30:14 2017 +0200
+
+    testing
+
+commit d09c5434f5df16f7d9b818e139eb68c0091948b0
+Author: MyStarfish <denknupostief@gmail.com>
+Date:   Thu Sep 14 13:12:57 2017 +0200
+
+    new branch
+
+commit 16be4f4b3e6adec45f722f77bcb9082a2bcff0e7
+Author: Jim de Vries <jimdvries@gmail.com>
+Date:   Thu Sep 14 12:47:53 2017 +0200
+
+    Yeah GitHub!

@@ -1,0 +1,125 @@
+
+div[class^="col-md-"] {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+@font-face {
+    font-family: Simplifica;
+    src : url('fonts/simplifica.ttf');
+}
+@font-face {
+    font-family: Book Antiqua;
+    src : url('fonts/BKANT.ttf');
+}
+@font-face {
+    font-family: "Bookman Old Style";
+    src : url('fonts/BOOKOS.ttf');
+}
+html, body {
+    background-color: #D9E9FF !important;
+    height: 100% !important;
+}
+.container {
+    width:  80% !important;
+}
+.breadcrumb {
+    margin-bottom: 0 !important;
+}
+#contentfix {
+    padding: 40px !important;
+}
+.toplogo {
+    display: block;
+    margin: auto;
+    width: 250px;
+}
+
+ol.breadcrumb {
+    font-family: "Bookman Old Style";
+    font-size: 1.5em;
+}
+#wrapper {
+    display: flex;
+    height: 87% !important;
+    background-color: #BBB5B5;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+@media only screen and (max-width: 768px) {
+    #wrapper {
+        display: block;
+    }
+}
+
+.bg-white {
+    background-color: white;
+}
+.bg-lilac {
+    background-color: #C8A2C8;
+}
+
+.bg-sand {
+    background-color: #bbb5b5;
+}
+
+.bg-light {
+    background-color: lightgray;
+}
+
+/*noinspection ALL*/
+.msg {
+    background: #fefefe;
+    color: #666666;
+    font-weight: bold;
+    font-size: small;
+    padding: 12px;
+    padding-left: 16px;
+    border-top: solid 3px #CCCCCC;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+    -moz-box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+    box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+}
+.msg-clear {
+    border-color: #fefefe;
+    -webkit-box-shadow: 0 7px 10px -5px rgba(0,0,0,.15);
+    -moz-box-shadow: 0 7px 10px -5px rgba(0,0,0,.15);
+    box-shadow: 0 7px 10px -5px rgba(0,0,0,.15);
+}
+.msg-info {
+    border-color: #b8dbf2;
+}
+.msg-success {
+    border-color: #cef2b8;
+}
+.msg-warning {
+    border-color: rgba(255,165,0,.5);
+}
+.msg-danger {
+    border-color: #ec8282;
+}
+.msg-primary {
+    border-color: #9ca6f1;
+}
+.msg-magick {
+    border-color: #e0b8f2;
+}
+.msg-info-text {
+    color: #39b3d7;
+}
+.msg-success-text {
+    color: #80d651;
+}
+.msg-warning-text {
+    color: #db9e34;
+}
+.msg-danger-text {
+    color: #c9302c;
+}
+.msg-primary-text {
+    color: rgba(47,106,215,.9);
+}
+.msg-magick-text {
+    color: #bb39d7;
+}
