@@ -21,8 +21,8 @@
             <div class="card">
                 <div class="row">
                     <div class="col-md-3">
-                        <img class="card-img img-responsive  treatmentsCardImage"
-                             src="{{ asset('../images/globe.jpg') }}"
+                        <img class="card-img img-responsive "
+                             src="{{ asset('../images/globe.png') }}"
                              alt="Card image">
                     </div>
                     <div class="col-md-9">
@@ -38,8 +38,8 @@
             <div class="card">
                 <div class="row">
                     <div class="col-md-3">
-                        <img class="card-img img-responsive  treatmentsCardImage"
-                             src="{{ asset('../images/heart.png') }}"
+                        <img class="card-img img-responsive "
+                             src="{{ asset('../images/heart.jpg') }}"
                              alt="Card image">
                     </div>
                     <div class="col-md-9">
@@ -55,8 +55,42 @@
             <div class="card">
                 <div class="row">
                     <div class="col-md-3">
-                        <img class="card-img img-responsive  treatmentsCardImage"
-                             src="{{ asset('../images/heart.png') }}"
+                        <img class="card-img img-responsive "
+                             src="{{ asset('../images/yoga.png') }}"
+                             alt="Card image">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <h4 class="card-title Starfish-Logo-with-text-blue">Mijn Gevoel</h4>
+                            <p class="card-text">fficitur rhoncus vitae eget lectus. Cras augue ligula, aliquam
+                                ut enim ut, feugiat imperdiet sem. Integer sed mi quis nisl eleifend
+                                interdum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="card-img img-responsive "
+                             src="{{ asset('../images/meditation.png') }}"
+                             alt="Card image">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <h4 class="card-title Starfish-Logo-with-text-blue">Mijn Gevoel</h4>
+                            <p class="card-text">fficitur rhoncus vitae eget lectus. Cras augue ligula, aliquam
+                                ut enim ut, feugiat imperdiet sem. Integer sed mi quis nisl eleifend
+                                interdum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="card-img img-responsive "
+                             src="{{ asset('../images/brain.png') }}"
                              alt="Card image">
                     </div>
                     <div class="col-md-9">
