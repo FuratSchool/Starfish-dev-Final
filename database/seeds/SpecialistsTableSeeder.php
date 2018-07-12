@@ -14,11 +14,14 @@ class SpecialistsTableSeeder extends Seeder {
      */
     public function run() {
         $faker = Faker::create('en_US');
-        $count = 100;
+        $count = 20;
         foreach (range(1, $count) as $index) {
             print_r( "Seeding {$index} of {$count}\r");
             Specialist::create([
                 'name' => $faker->name(),
+                'adverb' => $faker->name(),
+                'sur_name' => $faker->name(),
+                'gender' => $faker->randomElement(['male', 'female']),
                 'occupation' => $faker->jobTitle,
                 'map_lat' => $faker->latitude(),
                 'map_lng' => $faker->longitude(),

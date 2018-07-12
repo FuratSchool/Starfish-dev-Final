@@ -1,11 +1,10 @@
-
-$(document).ready(function() {
+$(document).ready(function () {
     var cookie_tos_accepted = Cookies.get('cookie_tos_accepted');
-    if(cookie_tos_accepted !== "true") {
+    if (cookie_tos_accepted !== "true") {
         $("div#cookie_popup").slideDown(275, 'swing');
     }
-    $('#cookie_accept').click(function() {
-        Cookies.set('cookie_tos_accepted', 'true', { expires:  365});
+    $('#cookie_accept').click(function () {
+        Cookies.set('cookie_tos_accepted', 'true', {expires: 365});
         $('div#cookie_popup').slideUp(275, 'swing');
     });
 });
@@ -16,24 +15,25 @@ $('#q').attr('list', list);
 
 //change datalist when user selects their search direction
 $('#list').change(function () {
-    if($('#q').attr('list') === 'complaints') {
+    if ($('#q').attr('list') === 'complaints') {
         $('#q').attr('list', 'disciplines');
     } else {
         $('#q').attr('list', 'complaints');
     }
-=======
-$(document).ready(function(){
-    var cookie_tos_accepted = Cookies.get('cookie_tos_accepted')
-    if(cookie_tos_accepted != true) {
-        $("#cookie_popup").slideDown(1000, 'swing');
-        $('#cookie_accept').click(function () {
-            if ($('#cookie_tos_accept') == 1) {
-                Cookies.create('cookie_tos_accepted', 'true');
-                $('div#cookie_popup').slideUp(275, 'swing');
-            } else {
-                alert('U heeft geen toestemming gegeven voor het gebruik van cookies');
-            }
-        });
-    };
+    $(document).ready(function () {
+        var cookie_tos_accepted = Cookies.get('cookie_tos_accepted')
+        if (cookie_tos_accepted != true) {
+            $("#cookie_popup").slideDown(1000, 'swing');
+            $('#cookie_accept').click(function () {
+                if ($('#cookie_tos_accept') == 1) {
+                    Cookies.create('cookie_tos_accepted', 'true');
+                    $('div#cookie_popup').slideUp(275, 'swing');
+                } else {
+                    alert('U heeft geen toestemming gegeven voor het gebruik van cookies');
+                }
+            });
+        };
+
+    });
 
 });

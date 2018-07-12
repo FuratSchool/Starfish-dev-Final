@@ -12,11 +12,11 @@ class Specialist extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'occupation', 'map_lat', 'map_lng', 'address', 'city', 'postal_code', 'is_anonymous', 'url_name', 'profile_image', 'company', 'story', 'mission', 'phone_number', 'mobile_phone', 'url', 'email', 'region', 'country'];
+    protected $fillable = ['name', 'adverb', 'sur_name', 'gender', 'occupation', 'map_lat', 'map_lng', 'address', 'city', 'postal_code', 'is_anonymous', 'url_name', 'profile_image', 'company', 'story', 'mission', 'phone_number', 'mobile_phone', 'url', 'email', 'region', 'country'];
     /**
      * @var array
      */
-    protected $visible = ['id', 'name', 'profile_image','address', 'city', 'postal_code', 'company', ' story', ' mission'   ,'occupation', 'url_name', 'map_lng', 'map_lat', 'is_anonymous', 'region', 'country'];
+    protected $visible = ['id', 'name', 'adverb', 'sur_name', 'gender', 'profile_image','address', 'city', 'postal_code', 'company', ' story', ' mission'   ,'occupation', 'url_name', 'map_lng', 'map_lat', 'is_anonymous', 'region', 'country'];
 
     /**
      * @var array
@@ -40,7 +40,7 @@ class Specialist extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function specialisms() {
-     return $this->belongsToMany('App\Models\Specialism', 'specialists_specialisms', 'specialist_id', 'specialism_id')->withPivot('prio')->orderBy('prio');
+        return $this->belongsToMany('App\Models\Specialism', 'specialists_specialisms', 'specialist_id', 'specialism_id')->withPivot('prio')->orderBy('prio');
     }
 
     /**

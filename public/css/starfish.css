@@ -1,0 +1,375 @@
+body {
+    font-family: 'Roboto Light' !important;
+}
+
+.main-page-background {
+    background-image: url("../images/homepage_landing_image.jpg") !important;
+    background-position: center;
+    height: 500px;
+    text-align: center;
+    color: #898B8A !important;
+    margin-bottom: 0px !important;
+}
+
+.main-navigation {
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.1) !important;
+    -moz-box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card {
+    margin-bottom: 10px !important;
+    -webkit-box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.1) !important;
+    -moz-box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.1) !important;
+}
+
+.nav-item-color > a {
+    color: #5C6160 !important;
+    font-size: 22px;
+    font-family: "Roboto Thin" !important;
+    text-align: center !important;
+}
+
+
+.ReceptCard {
+    padding-left: -15px !important;
+    padding-right: 15px !important;
+}
+
+.main-content {
+    margin-bottom: 20px;
+}
+
+.homepage-card-Gray {
+    width: 100%;
+    height: 49%;
+    border: none !important;
+    margin-bottom: 10px;
+    background-color: #F5F5F5 !important;
+    box-shadow: none !important;
+}
+
+.complaints-card-Gray {
+    width: 100%;
+    border: none !important;
+    margin-bottom: 10px;
+    background-color: #F5F5F5 !important;
+    box-shadow: none !important;
+}
+
+.packages-card-gray {
+    width: 100%;
+    border: none !important;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    background-color: #F5F5F5 !important;
+    box-shadow: none !important;
+}
+
+.results-card-Gray {
+    width: 100%;
+    height: 100%;
+    border: none !important;
+    margin-bottom: 10px;
+    background-color: #F5F5F5 !important;
+    box-shadow: none !important;
+}
+
+.homepage-card-Gray > img {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    padding: 20px;
+
+}
+
+
+.specialist-image {
+    border-radius: 50%;
+
+}
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-catagory {
+    color: #27b9cb !important;
+}
+
+.card-position {
+    margin-bottom: 20px;
+}
+
+.card-title-Gray {
+    font-family: "Roboto Light";
+    color: #5C6160 !important;
+    text-align: center;
+}
+
+.card-title-Gray h5 {
+    font-size: 25px;
+}
+
+.card-title-Gray {
+    font-family: "Roboto Light";
+    color: #5C6160 !important;
+    text-align: center;
+}
+
+.card-sub-title-Gray p {
+    font-family: "Roboto Light";
+
+    font-size: 18px;
+    text-align: center;
+}
+
+.card-content p {
+    text-align: center !important;
+}
+
+.btn-lees-meer {
+    background-color: #27b9cb !important;
+    color: #fff !important;
+}
+
+.btn-lees-meer-Gray {
+    background-color: #cccccc !important;
+    color: #000000 !important;
+    text-align: center !important;
+
+}
+
+.footer-color {
+    background-color: #E0E0E0 !important;
+    color: #000;
+    font-family: "Roboto Light";
+}
+
+.footer-nav-title {
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
+.footer-navigation > ul {
+    padding: 25px;
+    color: #74817f !important;
+}
+
+.footer-nav-link-color {
+    color: #74817f !important;
+}
+
+.footer-logo {
+    padding: 25px;
+    width: 200px;
+}
+
+.social-media-icons-positions {
+    padding: 20px;
+}
+
+.footer-hr {
+    border-top: 2px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn-socialmedia-circle {
+    border-radius: 50% !important;
+    height: 50px;
+    background-color: #ffffff !important;
+    margin-right: 20px;
+}
+
+.social-media-icons {
+    width: 25px;
+}
+
+.maps > img {
+    width: 100% !important;
+}
+
+.Card-Gray-persoon > img {
+    max-height: 200px;
+    width: 100%;
+}
+
+.Card-Gray-persoon-content {
+    text-align: center;
+}
+
+.Card-Gray-small {
+    text-align: center;
+    margin-top: 10px !important;
+}
+
+.search-small {
+    font-family: "Roboto Light";
+}
+
+.Custom-Select {
+    width: 200px !important;
+}
+
+.Starfish-Logo-with-text {
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    font-size: 30px;
+    line-height: inherit;
+}
+
+.Starfish-Logo-with-text-blue {
+    color: #38BDCF !important;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    line-height: inherit;
+}
+
+.Starfish-Card-colors {
+    color: #38BDCF !important;
+}
+
+.Starfish-Pagination-active {
+    background-color: #38BDCF !important;
+    color: #fff !important;
+}
+
+.Roboto-light {
+    font-family: "Roboto Light" !important;
+}
+
+.Roboto-light-card-colored p {
+    font-family: "Roboto Light";
+
+}
+
+.Starfish-pagination-logo {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.Card_Green {
+    background-color: #B1FBC0 !important;
+    border: none !important;
+    color: white;
+
+}
+
+.Card_Blue {
+    background-color: #30BBCD !important;
+    border: none !important;
+    color: white;
+}
+
+.Card_Blue_Packages {
+    background-color: #30BBCD !important;
+    border: none !important;
+    color: white;
+    min-height: 137px;
+    padding: 2.25rem !important;
+    text-align: center;
+}
+
+.Card_Green_Packages {
+    background-color: #B1FBC0 !important;
+    border: none !important;
+    color: white;
+    padding: 2.25rem !important;
+    text-align: center;
+}
+
+.Card_Rose_Packages {
+    background-color: #FDD9D2 !important;
+    border: none !important;
+    color: white;
+    padding: 2.25rem !important;
+    text-align: center;
+}
+
+.btn-blue-packages {
+    text-align: center !important;
+    background-color: #30BBCD !important;
+    color: white !important;
+}
+
+.Card_Rose {
+    background-color: #FDD9D2 !important;
+    border: none !important;
+    color: white;
+
+}
+
+.Card_Blue_main_site {
+    background-color: #AFEEF7 !important;
+    min-height: 350px;
+    border: none !important;
+}
+.card-img-left {
+    float: left !important;
+    height: 100% !important;
+    width: 250px !important;
+}
+
+.second-section,
+.third-section {
+    margin-bottom: 20px;
+}
+
+.first-section {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.information-section {
+    height: 100%;
+    text-align: center;
+    padding: 20px !important;
+    background-color: #E6F5F5 !important
+}
+
+.icons {
+    padding: 20px;
+    color: gray;
+}
+
+.icons > p {
+    margin-top: 10px;
+}
+
+.navbar.navbar-fixed-top.fixed-theme {
+    background-color: #222;
+    border-color: #080808;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .8);
+}
+
+.navbar-brand.fixed-theme {
+    font-size: 18px;
+}
+
+.navbar.navbar-fixed-top.fixed-theme {
+    transition: 0.8s;
+    -webkit-transition: 0.8s;
+}
+
+.bg-white {
+    background-color: #fff !important;
+}
+
+.receptCardImage,
+.articleCardImage {
+    min-height: 500px !important;
+}
+
+.treatmentsCardImage {
+    height: 100% !important;
+    min-height: 200px !important;
+}
+
+.list-group-item.active {
+    background-color: #38BDCF !important;
+    border-color: #38BDCF !important;
+}

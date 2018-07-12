@@ -19,6 +19,9 @@ class CreateSpecialistsTable extends Migration
         Schema::create('specialists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('adverb');
+            $table->string('sur_name');
+            $table->string('gender');
             $table->string('occupation');
             $table->double('map_lat', 10, 6);
             $table->double('map_lng', 10, 6);
@@ -27,7 +30,7 @@ class CreateSpecialistsTable extends Migration
             $table->string('postal_code');
             $table->string('region');
             $table->string('country');
-            $table->boolean('is_anonymous')->default(1);
+            $table->boolean('is_anonymous')->default(0);
             $table->timestamps();
 
             // Non-anonymous fields

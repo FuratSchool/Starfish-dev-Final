@@ -94,6 +94,9 @@ class SpecialistController extends Controller
         $pf_path =  $request->has($request->profile_image_filename) ? 'public/images/avatars/specialists/'.$request->profile_image_filename : 'public/images/anonymous.png';
         $input_data = [
             'name' => $request->name,
+            'adverb' => $request->adverb,
+            'sur_name' => $request->sur_name,
+            'gender' => $request->gender,
             'occupation' => $request->occupation,
             'map_lat' => $request->lat,
             'map_lng' => $request->lng,
@@ -173,17 +176,15 @@ class SpecialistController extends Controller
             }
         }
         foreach ($request->specialisms as $specialism => $specdata) {
-            // dd($specdata);
-            $speci = Specialism::where('name', $specdata)->first();
-            $spec->specialisms()->attach($speci, ['prio' => $specialism]);
-            activity('spec-log')
-                ->causedBy(auth()->user())
-                ->performedOn($spec)
-                ->withProperties(['action' => 'specialism_attached'])
-                ->log('Werrkgebied:  '. $speci['name'] .
-                    ', met prioriteit:'.$specialism.
-                    ', gekoppeld aan:'. $spec->name .
-                    'door:'.auth()->user()->username);
+            if($specdata["name"] != null){
+                $speci = Specialism::where('name', $specdata)->first();
+                $spec->specialisms()->attach($speci, ['prio' => $specialism]);
+                activity('spec-log')
+                    ->causedBy(auth()->user())
+                    ->performedOn($spec)
+                    ->withProperties(['action' => 'specialism_attached'])
+                    ->log('Werrkgebied:  '. $speci['name'].', met prioriteit:'.$specialism.', gekoppeld aan:'.$spec->name.'door:'.auth()->user()->username);
+            }
         }
         activity('spec-log')
             ->causedBy(auth()->user())
@@ -191,8 +192,7 @@ class SpecialistController extends Controller
             ->withProperties(['action' => 'created'])
             ->log('Specialist:  '.$spec->name.' aangemaakt door:'.auth()->user()->username);
         \Session::flash("success", "Specialist: ".$spec->name." succesvol aangemaakt");
-
-         return redirect()->route('admin.specialists.show', $spec->id);
+        return redirect()->route('admin.specialists.show', $spec->id);
     }
 
     /**

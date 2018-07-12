@@ -6,7 +6,7 @@
     @php
         $params = request()->input();
         $urls = [];
-        $dict = ['id', 'username', 'first_name', 'sur_name', 'email', 'status', 'LOA', 'updated_at'];
+        $dict = ['id', 'username','adverb', 'first_name', 'sur_name', 'email', 'status', 'LOA', 'updated_at'];
         foreach ($dict as $value) {
         $params['order'] = $value;
         $params['dir'] = $fdir[$value];
@@ -30,6 +30,7 @@
                    <option value='init' id="init">{{request()->filter_type ? "Verwijder Filters" : 'Kies kolom'}}</option>
                    <option value="username">Gebruikersnaam</option>
                    <option value="first_name">Voornaam</option>
+                   <option value="adverb">Tussenvoegsel</option>
                    <option value="sur_name">Achternaam</option>
                    <option value="email">E-Mail</option>
                    <option value="status">Status</option>
@@ -85,6 +86,17 @@
                         @if($fdir['first_name'] == 'desc' && $column == 'first_name')
                             <i class="fa fa-sort-asc" aria-hidden="true"></i>
                         @elseif($fdir['first_name'] == 'asc' && $column == 'first_name')
+                            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                        @else
+                            <i class="fa fa-sort" aria-hidden="true"></i>
+                        @endif
+                    </a>
+                </th>
+                <th>
+                    <a href="{{$urls['adverb']}}">Tussenvoegsel
+                        @if($fdir['adverb'] == 'desc' && $column == 'adverb')
+                            <i class="fa fa-sort-asc" aria-hidden="true"></i>
+                        @elseif($fdir['adverb'] == 'asc' && $column == 'adverb')
                             <i class="fa fa-sort-desc" aria-hidden="true"></i>
                         @else
                             <i class="fa fa-sort" aria-hidden="true"></i>
@@ -156,6 +168,7 @@
                 <td>{{$user->id}}</td>
                 <td><a href="{{route('admin.umgmt.show', $user->id)}}"> {{$user->username}}  {!! $user->is_online ? "<i class='fa fa-circle' style='color:lightgreen; float:right' title='online'></i>" : "<i class='fa fa-circle' style='color:red;float:right' title='offline'></i>" !!}</a></td>
                 <td>{{$user->first_name}}</td>
+                <td>{{$user->adverb}}</td>
                 <td>{{$user->sur_name}}</td>
                 <td>{{$user->email}}</td>
                 <td>
@@ -246,6 +259,7 @@
                     <th>ID</th>
                     <th>Gebruikersnaam</th>
                     <th>Voornaam</th>
+                    <th>Tussenvoegsel</th>
                     <th>Achternaam</th>
                     <th>E-mail</th>
                     <th>Status</th>
@@ -262,6 +276,7 @@
                         <td>{{$user->id}}</td>
                         <td><a href="{{route('admin.umgmt.show', $user->id)}}"> {{$user->username}} </a></td>
                         <td>{{$user->first_name}}</td>
+                        <td>{{$user->adverb}}</td>
                         <td>{{$user->sur_name}}</td>
                         <td>{{$user->email}}</td>
                         <td>

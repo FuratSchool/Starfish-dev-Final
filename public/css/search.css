@@ -19,14 +19,15 @@
     background-color: #e6e6e6;
 }
 tr[data-href]:hover, div[data-href]:hover {
-    background-color: #eeeeee;
     cursor: pointer;
+    transition: opacity 2s cubic-bezier(.165, .84, .44, 1);
 }
 tr[data-href]:active, div[data-href]:active {
     background-color: #e3e3e3;
 }
 #specinfo {
     padding:  10px !important;
+    font-size: 13px;
 }
 
 #specinfo p {
@@ -35,9 +36,6 @@ tr[data-href]:active, div[data-href]:active {
 }
 .spec_image {
     width: 100%;
-    margin: 5px;
-    display: inline-block !important;
-    vertical-align: middle;
 }
 .specialist {
     padding: 5px;

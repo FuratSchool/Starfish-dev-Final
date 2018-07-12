@@ -12,6 +12,7 @@
         });
 
         var i = 0;
+
         function showWarningAndThrow() {
             if (!i) {
                 setTimeout(function () {
@@ -37,13 +38,14 @@
 @endsection
 @section('title')
     Nieuwe Specialist
- @endsection
+@endsection
 @section('main')
     <div class="col-md-12 cbox-fluid">
         <div class="btitle">Nieuwe Specialist</div>
         <hr class="bdivider">
         <div class="bcontent">
-            <form class="form-horizontal " role="form" method="POST" action="{{ route('admin.specialists.store') }}" enctype="multipart/form-data" id="newspec">
+            <form class="form-horizontal " role="form" method="POST" action="{{ route('admin.specialists.store') }}"
+                  enctype="multipart/form-data" id="newspec">
                 {{ csrf_field() }}
                 <div class="row">
                     <h2 style="padding: 10px"><b>Persoonlijke informatie</b></h2>
@@ -51,8 +53,9 @@
                         <div class="form-group{{ $errors->has('name') ? ' has-error has-feedback' : '' }}">
                             <label for="name" class="col-md-2 control-label">Naam</label>
                             <div class="col-md-8">
-                                <input id="name" type="text" pattern="^[a-zA-Z\s\-]+$" class="form-control" name="name"  value="{{old('name')}}" placeholder="Naam" autofocus>
-                                <p class="help-block">Bijv: Mandy Van Oosten</p>
+                                <input id="name" type="text" pattern="^[a-zA-Z\s\-]+$" class="form-control" name="name"
+                                       value="{{old('name')}}" placeholder="Naam" autofocus>
+                                <p class="help-block">Bijv: Mandy</p>
                                 @if ($errors->has('name'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                     <span class="help-block">
@@ -61,12 +64,58 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('adverb') ? ' has-error has-feedback' : '' }}">
+                            <label for="adverb" class="col-md-2 control-label">Tussenvoegsel</label>
+                            <div class="col-md-8">
+                                <input id="adverb" type="text" pattern="^[a-zA-Z\s\-]+$" class="form-control"
+                                       name="adverb"
+                                       value="{{old('adverb')}}" placeholder="Tussenvoegsel" autofocus>
+                                <p class="help-block">Bijv: Van</p>
+                                @if ($errors->has('adverb'))
+                                    <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                    <span class="help-block">
+                                                <strong>{{ $errors->first('adverb') }}</strong>
+                                            </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('sur_name') ? ' has-error has-feedback' : '' }}">
+                            <label for="sur_name" class="col-md-2 control-label">Achternaam</label>
+                            <div class="col-md-8">
+                                <input id="sur_name" type="text" pattern="^[a-zA-Z\s\-]+$" class="form-control"
+                                       name="sur_name"
+                                       value="{{old('sur_name')}}" placeholder="Achternaam" autofocus>
+                                <p class="help-block">Bijv: Oosten</p>
+                                @if ($errors->has('sur_name'))
+                                    <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                    <span class="help-block">
+                                                <strong>{{ $errors->first('sur_name') }}</strong>
+                                            </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('gender') ? ' has-error has-feedback' : '' }}">
+                            <label for="gender" class="col-md-2 control-label">Geslacht</label>
+                            <div class="col-md-8">
+                                <input id="gender" type="text" pattern="^[a-zA-Z\s\-]+$" class="form-control"
+                                       name="gender"
+                                       value="{{old('gender')}}" placeholder="Geslacht" autofocus>
+                                <p class="help-block">Bijv: Man/Vrouw</p>
+                                @if ($errors->has('gender'))
+                                    <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                    <span class="help-block">
+                                                <strong>{{ $errors->first('gender') }}</strong>
+                                            </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('occupation') ? ' has-error has-feedback' : '' }}">
                             <label for="occupation" class="col-md-2 control-label">Beroep</label>
                             <div class="col-md-8">
-                                <input id="occupation" type="text" class="form-control" name="occupation"  value="{{old('occupation')}}" placeholder="Beroep" >
+                                <input id="occupation" type="text" class="form-control" name="occupation"
+                                       value="{{old('occupation')}}" placeholder="Beroep">
                                 <p class="help-block">Bijv: Accupuncturist</p>
-                            @if ($errors->has('occupation'))
+                                @if ($errors->has('occupation'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                     <span class="help-block">
                                                 <strong>{{ $errors->first('occupation') }}</strong>
@@ -74,16 +123,19 @@
                                 @endif
                             </div>
                         </div>
-                        <input type="hidden" name="lat" id="lat">
-                        <input type="hidden" name="lng" id="lng">
+                        <input type="hidden" name="lat" id="lat" value="map_lat">
+                        <input type="hidden" name="lng" id="lng" value="map_lng">
                         <input type="hidden" name="region" id="region">
                         <input type="hidden" name="country" id="country">
                         <div class="form-group{{ $errors->has('address') ? ' has-error has-feedback' : '' }}">
                             <label for="address" class="col-md-2 control-label">Adres</label>
                             <div class="col-md-8">
-                                <input id="address" type="text" pattern="^([a-zA-Z0-9]+[\s])+(([^\d](?!\d{1,4}[a-z]))?([\d]{1,4})([^\d]{1,2})?)$" class="form-control" name="address"  value="{{old('address')}}" placeholder="Adres" >
+                                <input id="address" type="text"
+                                       pattern="^([a-zA-Z0-9]+[\s])+(([^\d](?!\d{1,4}[a-z]))?([\d]{1,4})([^\d]{1,2})?)$"
+                                       class="form-control" name="address" value="{{old('address')}}"
+                                       placeholder="Adres">
                                 <p class="help-block">Bijv: Albedastraat 15</p>
-                            @if ($errors->has('address'))
+                                @if ($errors->has('address'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                     <span class="help-block">
                                                 <strong>{{ $errors->first('address') }}</strong>
@@ -94,9 +146,11 @@
                         <div class="form-group{{ $errors->has('city') ? ' has-error has-feedback' : '' }}">
                             <label for="city" class="col-md-2 control-label">Stad/Plaats</label>
                             <div class="col-md-8">
-                                <input id="city" type="text" pattern="^[a-zA-Z\s\-]+$" class="form-control" name="city"  value="{{old('city')}}" placeholder="Stad/Plaats">
+                                <input id="city" type="text" pattern="^[a-zA-Z\s\-]+$" class="form-control"
+                                       name="city"
+                                       value="{{old('city')}}" placeholder="Stad/Plaats">
                                 <p class="help-block">Bijv: Amsterdam</p>
-                            @if ($errors->has('city'))
+                                @if ($errors->has('city'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                     <span class="help-block">
                                                 <strong>{{ $errors->first('city') }}</strong>
@@ -107,9 +161,12 @@
                         <div class="form-group{{ $errors->has('postal_code') ? ' has-error has-feedback' : '' }}">
                             <label for="postal_code" class="col-md-2 control-label">Postcode</label>
                             <div class="col-md-8">
-                                <input id="postal_code" type="text" pattern="^((\d){4}[\s]?([A-Z/a-z]){2}$)|." class="form-control" name="postal_code"  value="{{old('postal_code')?:null}}" placeholder="Postcode">
+                                <input id="postal_code" type="text" pattern="^((\d){4}[\s]?([A-Z/a-z]){2}$)|."
+                                       class="form-control" name="postal_code"
+                                       value="{{old('postal_code')?:null}}"
+                                       placeholder="Postcode">
                                 <p class="help-block">Bijv: 1234AB of 1234 AB</p>
-                            @if ($errors->has('postal_code'))
+                                @if ($errors->has('postal_code'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                     <span class="help-block">
                                                 <strong>{{ $errors->first('postal_code') }}</strong>
@@ -119,18 +176,25 @@
                         </div>
                         <div class="form-group">
                             <label class="col-md-2 control-label">Regio</label>
-                            <output id="regionOut" class="col-md-8 text-italic text-white">Wordt automatisch ingevuld</output>
+                            <output name="region" id="regionOut" class="col-md-8 text-italic">Wordt
+                                automatisch ingevuld
+                            </output>
                         </div>
                         <div class="form-group">
                             <label class="col-md-2 control-label">Land</label>
-                            <output id="countryOut" class="col-md-8 text-italic text-white">Wordt automatisch ingevuld</output>
+                            <output name="country" id="countryOut" class="col-md-8 text-italic">Wordt
+                                automatisch ingevuld
+                            </output>
                         </div>
                         <div class="form-group{{ $errors->has('phone_number') ? ' has-error has-feedback' : '' }}">
                             <label for="phone_number" class="col-md-2 control-label">Telefoon</label>
                             <div class="col-md-8">
-                                <input id="phone_number" type="tel" pattern="^(([(]?(0)[0-9]{2}[0-9]?[)]?([-]|[\s])?[1-9][0-9]{5})|((\+31|31|0|0031)([\s]|[-])?(\()?[0]?[0-9]{2,3}(\))?([\s]|[-])?[0-9]{6}))$" class="form-control" name="phone_number"  value="{{old('phone_number')}}" placeholder="Telefoonnummer"/>
+                                <input id="phone_number" type="tel"
+                                       pattern="^(([(]?(0)[0-9]{2}[0-9]?[)]?([-]|[\s])?[1-9][0-9]{5})|((\+31|31|0|0031)([\s]|[-])?(\()?[0]?[0-9]{2,3}(\))?([\s]|[-])?[0-9]{6}))$"
+                                       class="form-control" name="phone_number" value="{{old('phone_number')}}"
+                                       placeholder="Telefoonnummer"/>
                                 <p class="help-block">Bijv: 020-123456 of 020123456</p>
-                            @if ($errors->has('phone_number'))
+                                @if ($errors->has('phone_number'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                     <span class="help-block">
                                             <strong>{{ $errors->first('phone_number') }}</strong>
@@ -141,9 +205,12 @@
                         <div class="form-group{{ $errors->has('mobile_phone') ? ' has-error has-feedback' : '' }}">
                             <label for="mobile_phone" class="col-md-2 control-label">Mobiel</label>
                             <div class="col-md-8">
-                                <input id="mobile_phone" type="tel" pattern="^(((0|\+31|31|0031)?[\s]?6){1}([\s]|[-])?[1-9][0-9]{7})$" class="form-control" name="mobile_phone"  value="{{old('mobile_phone')}}" placeholder="Mobielnummer" />
+                                <input id="mobile_phone" type="tel"
+                                       pattern="^(((0|\+31|31|0031)?[\s]?6){1}([\s]|[-])?[1-9][0-9]{7})$"
+                                       class="form-control" name="mobile_phone" value="{{old('mobile_phone')}}"
+                                       placeholder="Mobielnummer"/>
                                 <p class="help-block">Bijv: 06-12345678 of 0612345678</p>
-                            @if ($errors->has('mobile_phone'))
+                                @if ($errors->has('mobile_phone'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                     <span class="help-block">
                                         <strong>{{ $errors->first('mobile_phone') }}</strong>
@@ -154,8 +221,12 @@
                         <div class="form-group{{ $errors->has('is_anonymous') ? ' has-error has-feedback' : '' }}">
                             <label for="is_anonymous" class="col-md-2 control-label">Betaald</label>
                             <div class="col-md-8">
-                                <label class="radio-inline"><input id="is_anonymous" type="radio"  name="is_anonymous"  value="0" checked>Niet betaald</label>
-                                <label class="radio-inline"><input id="not_anonymous" type="radio"  name="is_anonymous"  value="1">Betaald</label>
+                                <label class="radio-inline"><input id="is_anonymous" type="radio"
+                                                                   name="is_anonymous"
+                                                                   value="0" checked>Niet betaald</label>
+                                <label class="radio-inline"><input id="not_anonymous" type="radio"
+                                                                   name="is_anonymous"
+                                                                   value="1">Betaald</label>
                                 @if ($errors->has('is_anonymous'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                     <span class="help-block">
@@ -179,9 +250,11 @@
                         <div class="form-group{{ $errors->has('url_name') ? ' has-error has-feedback' : '' }}">
                             <label for="url_name" class="col-md-2 control-label">URL Naam</label>
                             <div class="col-md-8">
-                                <input id="url_name" type="text" pattern="^[a-zA-Z0-9\-]+$" class="form-control" name="url_name"  value="{{old('url_name')}}" placeholder="URL-Naam">
+                                <input id="url_name" type="text" pattern="^[a-zA-Z0-9\-]+$" class="form-control"
+                                       name="url_name" value="{{old('url_name')}}" placeholder="URL-Naam">
                                 <p class="help-block">Dit is de URL die in de adresbalk wordt getoond</p>
-                                <p class="help-block">Het is aan te raden om de voorgestelde URL te gebruiken</p>
+                                <p class="help-block">Het is aan te raden om de voorgestelde URL te
+                                    gebruiken</p>
                                 @if ($errors->has('url_name'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                     <span class="help-block">
@@ -193,9 +266,11 @@
                         <div class="form-group{{ $errors->has('profile_image') ? ' has-error has-feedback' : '' }}">
                             <label for="profile_image" class="col-md-2 control-label">Profielafbeelding</label>
                             <div class="col-md-8">
-                                <input type="hidden" name="profile_image_cropped" id="profile_image_cropped" value="">
-                                <input type="hidden" name="profile_image_filename" id="profile_image_filename" value="{{old('profile_image')}}">
-                                <input id="profile_image" type="file"  name="profile_image"   accept="image/*">
+                                <input type="hidden" name="profile_image_cropped" id="profile_image_cropped"
+                                       value="">
+                                <input type="hidden" name="profile_image_filename" id="profile_image_filename"
+                                       value="{{old('profile_image')}}">
+                                <input id="profile_image" type="file" name="profile_image" accept="image/*">
                                 <span class="help-block">Ondersteunde bestandstype: PNG, JPEG, GIF</span>
                                 @if ($errors->has('profile_image'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
@@ -208,9 +283,11 @@
                         <div class="form-group{{ $errors->has('company') ? ' has-error has-feedback' : '' }}">
                             <label for="company" class="col-md-2 control-label">Bedrijf</label>
                             <div class="col-md-8">
-                                <input id="company" type="text" class="form-control" name="company"  value="{{old('company')}}" placeholder="Bedrijf">
-                                <p class="help-block">Gebruik de volledige naam van het bedrijf, dit vergroot de vindbaarheid</p>
-                            @if ($errors->has('company'))
+                                <input id="company" type="text" class="form-control" name="company"
+                                       value="{{old('company')}}" placeholder="Bedrijf">
+                                <p class="help-block">Gebruik de volledige naam van het bedrijf, dit vergroot de
+                                    vindbaarheid</p>
+                                @if ($errors->has('company'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                     <span class="help-block">
                                             <strong>{{ $errors->first('company') }}</strong>
@@ -221,8 +298,10 @@
                         <div class="form-group{{ $errors->has('story') ? ' has-error has-feedback' : '' }}">
                             <label for="story" class="col-md-2 control-label">Verhaal</label>
                             <div class="col-md-8">
-                                <input type="hidden" name="story" id="story" value="{{old('story')}}" tmp="{{old("story")}}" data-display="Verhaal">
-                                <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#storyEditor" data-inputTarget="#story">
+                                <input type="hidden" name="story" id="story" value="{{old('story')}}"
+                                       tmp="{{old("story")}}" data-display="Verhaal">
+                                <button type="button" class="btn btn-edit" data-toggle="modal"
+                                        data-target="#storyEditor" data-inputTarget="#story">
                                     Editor openen
                                 </button>
                             </div>
@@ -230,9 +309,10 @@
                         <div class="form-group{{ $errors->has('mission') ? ' has-error has-feedback' : '' }}">
                             <label for="mission" class="col-md-2 control-label">Missie/Leader</label>
                             <div class="col-md-8">
-                                <textarea id="mission" class="form-control" name="mission" >{{old('mission')}}</textarea>
+                                        <textarea id="mission" class="form-control"
+                                                  name="mission">{{old('mission')}}</textarea>
                                 <p class="help-block">Geef in 2 a 3 zinnen het doel van deze specialist weer</p>
-                            @if ($errors->has('mission'))
+                                @if ($errors->has('mission'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                     <span class="help-block">
                                             <strong>{{ $errors->first('mission') }}</strong>
@@ -245,10 +325,13 @@
                         <div class="form-group{{ $errors->has('url') ? ' has-error has-feedback' : '' }}">
                             <label for="url" class="col-md-2 control-label">Website</label>
                             <div class="col-md-8">
-                                <input id="url" type="text" pattern="([--:\w?@%&+~#=]*\.[a-z]{2,4}\/{0,2})((?:[?&](?:\w+)=(?:\w+))+|[--:\w?@%&+~#=]+)?" class="form-control" name="url"  value="{{old('url')}}" placeholder="URL"/>
+                                <input id="url" type="text"
+                                       pattern="([--:\w?@%&+~#=]*\.[a-z]{2,4}\/{0,2})((?:[?&](?:\w+)=(?:\w+))+|[--:\w?@%&+~#=]+)?"
+                                       class="form-control" name="url" value="{{old('url')}}"
+                                       placeholder="URL"/>
                                 <p class="help-block">Gebruik de volledige URL</p>
                                 <p class="help-block">Bijv: https://www.starfish.nl</p>
-                            @if ($errors->has('url'))
+                                @if ($errors->has('url'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                     <span class="help-block">
                                         <strong>{{ $errors->first('url') }}</strong>
@@ -259,9 +342,10 @@
                         <div class="form-group{{ $errors->has('email') ? ' has-error has-feedback' : '' }}">
                             <label for="email" class="col-md-2 control-label">E-Mail</label>
                             <div class="col-md-8">
-                                <input id="email" type="email" class="form-control" name="email"  value="{{old('email')}}" placeholder="E-Mail" />
+                                <input id="email" type="email" class="form-control" name="email"
+                                       value="{{old('email')}}" placeholder="E-Mail"/>
                                 <p class="help-block">Bijv: piet@example.com</p>
-                            @if ($errors->has('email'))
+                                @if ($errors->has('email'))
                                     <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -277,10 +361,15 @@
                     <div class="col-md-6">
                         @for($x = 1;  $x <= 5; $x++)
                             <div class="form-group{{$errors->has('image'.$x) ? 'has-error has-feedback' : ''}}">
-                                <label for="image{{$x}}" class="col-md-3 control-label">Afbeelding {{$x}}</label>
+                                <label for="image{{$x}}"
+                                       class="col-md-3 control-label">Afbeelding {{$x}}</label>
                                 <div class="col-md-7">
-                                        <input id="image{{$x}}"  name="images[image{{$x}}][file]" type="file" accept="image/*">
-                                        <input id="image{{$x}}caption"  name="images[image{{$x}}][caption]" type="text" class="form-control" style="margin-top: 10px" placeholder="Beschrijving afbeelding {{$x}}">
+                                    <input id="image{{$x}}" name="images[image{{$x}}][file]" type="file"
+                                           accept="image/*">
+                                    <input id="image{{$x}}caption" name="images[image{{$x}}][caption]"
+                                           type="text"
+                                           class="form-control" style="margin-top: 10px"
+                                           placeholder="Beschrijving afbeelding {{$x}}">
                                     @if ($errors->has('image'.$x))
                                         <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                         <span class="help-block">
@@ -302,15 +391,22 @@
 
                                 <div class="col-md-10">
                                     <div class="col-md-12">
-                                        <label for="diverse{{$x}}name" class="col-md-2 control-label">Naam: </label>
-                                        <input class=" form-control" id="diverse{{$x}}name"  name="diverses[diverse{{$x}}][name]" type="text" placeholder="Naam Diverse {{$x}}">
-                                        <span class="help-block" style="margin-left: calc(100%/12*2)">Naam voor de link</span>
+                                        <label for="diverse{{$x}}name"
+                                               class="col-md-2 control-label">Naam: </label>
+                                        <input class=" form-control" id="diverse{{$x}}name"
+                                               name="diverses[diverse{{$x}}][name]" type="text"
+                                               placeholder="Naam Diverse {{$x}}">
+                                        <span class="help-block"
+                                              style="margin-left: calc(100%/12*2)">Naam voor de link</span>
                                     </div>
                                     <div class="col-md-12">
-                                        <label for="diverse{{$x}}target" class="col-md-2 control-label">Locatie: </label>
-                                        <input id="diverse{{$x}}target"  name="diverses[diverse{{$x}}][target]" type="file">
+                                        <label for="diverse{{$x}}target"
+                                               class="col-md-2 control-label">Locatie: </label>
+                                        <input id="diverse{{$x}}target" name="diverses[diverse{{$x}}][target]"
+                                               type="file">
                                         <div class="col-md-12">
-                                           <span class="help-block" style="margin-left: calc(100%/12*2)"><i>Bijna</i> alle formaten worden geaccepteerd</span>
+                                                <span class="help-block"
+                                                      style="margin-left: calc(100%/12*2)"><i>Bijna</i> alle formaten worden geaccepteerd</span>
                                         </div>
                                     </div>
                                     @if ($errors->has('diverse'.$x))
@@ -336,9 +432,11 @@
                         </div>
                         @for($x = 1;  $x <= 5; $x++)
                             <div class="form-group{{$errors->has('specialisms.'.$x.'.name') ? 'has-error has-feedback' : ''}}">
-                                <label for="specialism{{$x}}" class="col-md-3 control-label">Werkgebied {{$x}}</label>
+                                <label for="specialism{{$x}}"
+                                       class="col-md-3 control-label">Werkgebied {{$x}}</label>
                                 <div class="col-md-7">
-                                    <select id="specialism{{$x}}" name="specialisms[{{$x}}][name]" class="form-control">
+                                    <select id="specialism{{$x}}" name="specialisms[{{$x}}][name]"
+                                            class="form-control">
                                         @if($x > 1)
                                             <option value="" selected>Geen {{$x}}de werkgebied</option>
                                         @endif
@@ -366,12 +464,12 @@
             </form>
         </div>
     </div>
-   @include('modals.editor')
+    @include('modals.editor')
     @include('modals.cropper')
 @endsection
 @section('scripts')
     @parent
-    <script type="text/javascript" src="{{asset('js/BudEdit.js')}}" ></script>
-    <script type="text/javascript" src="{{asset('js/specImage.js')}}" ></script>
+    <script type="text/javascript" src="{{asset('js/BudEdit.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/specImage.js')}}"></script>
     <script src="{{asset('js/cropper.min.js')}}"></script>
 @endsection

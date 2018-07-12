@@ -32,6 +32,41 @@ admin.complaints.destroy,Klachten verwijderen,2
 admin.complaints.show,Klachten weergeven,1
 admin.complaints.update,Klachten updaten,2
 admin.complaints.edit,Klachten bewerken,2
+admin.coaching.index,coaching,1
+admin.coaching.store,coaching opslaan,1
+admin.coaching.create,coaching aanmaken,1
+admin.coaching.destroy,coaching verwijderen,2
+admin.coaching.show,coaching weergeven,1
+admin.coaching.update,coaching updaten,2
+admin.coaching.edit,coaching bewerken,2
+admin.wellness.index,wellness,1
+admin.wellness.store,wellness opslaan,1
+admin.wellness.create,wellness aanmaken,1
+admin.wellness.destroy,wellness verwijderen,2
+admin.wellness.show,wellness weergeven,1
+admin.wellness.update,wellness updaten,2
+admin.wellness.edit,wellness bewerken,2
+admin.recipes.index,recipes,1
+admin.recipes.store,recipes opslaan,1
+admin.recipes.create,recipes aanmaken,1
+admin.recipes.destroy,recipes verwijderen,2
+admin.recipes.show,recipes weergeven,1
+admin.recipes.update,recipes updaten,2
+admin.recipes.edit,recipes bewerken,2
+admin.articles.index,articles,1
+admin.articles.store,articles opslaan,1
+admin.articles.create,articles aanmaken,1
+admin.articles.destroy,articles verwijderen,2
+admin.articles.show,articles weergeven,1
+admin.articles.update,articles updaten,2
+admin.articles.edit,articles bewerken,2
+admin.pages.index,pages,1
+admin.pages.store,pages opslaan,1
+admin.pages.create,pages aanmaken,1
+admin.pages.destroy,pages verwijderen,2
+admin.pages.show,pages weergeven,1
+admin.pages.update,pages updaten,2
+admin.pages.edit,pages bewerken,2
 admin.logs.index,Logboeken,3
 admin.specialisms.index,Werkgebieden,1
 admin.specialisms.create,Werkgebieden aanmaken,1

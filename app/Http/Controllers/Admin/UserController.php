@@ -25,6 +25,7 @@ class UserController extends Controller
                     'id' =>  'asc',
                     'username' => 'asc',
                     'first_name' => 'asc',
+                    'adverb' => 'asc',
                     'sur_name' => 'asc',
                     'email' => 'asc',
                     'status' => 'asc',
@@ -38,7 +39,7 @@ class UserController extends Controller
                 $dir = 'asc';
             }
         $users = User::query();
-        $users = $users->select('id', 'username', 'first_name', 'sur_name', 'email', 'is_active AS status' ,'is_admin AS LOA' , 'is_online', 'last_login', 'notice')->where('deleted_at', "=", null);
+        $users = $users->select('id', 'username', 'first_name', 'adverb', 'sur_name', 'email', 'is_active AS status' ,'is_admin AS LOA' , 'is_online', 'last_login', 'notice')->where('deleted_at', "=", null);
         if(isset($_GET['filter_type']) && isset($_GET['q'])) {
                 $filter_type = $_GET['filter_type'];
                 $q =  $_GET['q'];
@@ -64,7 +65,7 @@ class UserController extends Controller
                     $fdir[$value] = 'asc';
                 }
             }
-         $deletedUsers = User::onlyTrashed()->select('id', 'username', 'first_name', 'sur_name', 'email', 'is_active AS status' ,'is_admin AS LOA' , 'notice', 'deleted_at')->orderBy('deleted_at', 'desc')->paginate('10',['*'], 'deletedUsers');
+         $deletedUsers = User::onlyTrashed()->select('id', 'username', 'first_name', 'adverb', 'sur_name', 'email', 'is_active AS status' ,'is_admin AS LOA' , 'notice', 'deleted_at')->orderBy('deleted_at', 'desc')->paginate('10',['*'], 'deletedUsers');
         return view('admin.users.index', compact('users', 'deletedUsers', 'fdir', 'column'));
     }
 
@@ -94,7 +95,9 @@ class UserController extends Controller
             ),
             'email' => 'required|email|unique:users',
             'first_name' => 'required' ,
+            'adverb' =>  'max:20',
             'sur_name' => 'required',
+            'notice' => 'max:20',
         ], [
             'username.required' => 'Vul een gebruikersnaam in',
             'username.unique' => 'Deze gebruikersnaam is bezet',
@@ -114,6 +117,7 @@ class UserController extends Controller
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'first_name' => $request->first_name,
+            'adverb' => $request->adverb,
             'sur_name' => $request->sur_name,
             'email' => $request->email,
             'is_admin' => $request->is_admin,
@@ -164,6 +168,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->first_name = $request->first_name ?: $user->first_name;
+        $user->adverb = $request->adverb ?: $user->adverb;
         $user->sur_name = $request->sur_name ?: $user->sur_name;
         $user->is_admin = $request->is_admin ?: $user->is_admin;
         $user->notice = $request->notice ?: $user->notice;

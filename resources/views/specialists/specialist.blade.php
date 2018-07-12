@@ -4,111 +4,80 @@
 @endsection
 @section('styles')
     @parent
-    <link rel="stylesheet" type="text/css" href="{{asset('css/specialist.css')}}"
+    <link rel="stylesheet" type="text/css" href="{{asset('css/specialist.css')}}">
 @endsection
 @section('main')
-    <div class="col-md-12">
-       {!! Breadcrumbs::render('specialist', $spec) !!}
-    </div>
-    <div class="col-md-12" id="wrapper">
-        <div class="col-md-3 ">
-            <img alt="{{$spec->name}}" class="specimage" src="{{urldecode(asset('images/avatars/specialists/'.$spec->profile_image)) }}">
-            <div class="bg-white text-center contact-info">
-                <p>{{$spec->company}}</p>
-                <p>{{$spec->address}}</p>
-                <p>{{$spec->postal_code}}, {{$spec->city}}</p>
-                <p>{{$spec->phone_number}} / {{$spec->mobile_phone}}</p>
-                <p>{{$spec->email}}</p>
-                <p>{{$spec->url}}</p>
+    <div class="container">
+
+        <div class="first-section" id="wrapper">
+            <div class="card card-profile ">
+                <div class="card-header">
+                    <h5 class="Starfish-Logo-with-text-blue">{{$spec->occupation}}
+                    </h5>
+                </div>
+
+                <div class="card-body ">
+
+                    <section class="row">
+                        <div class="col-md-3">
+                            <img alt="{{$spec->name}}" class="card-img-left" src="{{substr($spec->profile_image, 6)}}"
+                                 width="100%">
+                        </div>
+                        <div class="col-md-9">
+                            <h5 class="Roboto-light">Naam: {{$spec->name}}</h5>
+
+                            <h3 class="Starfish-Logo-with-text-blue">{{$spec->occupation}}</h3>
+                            <p><b>Mijn Verhaal: </b>{{$spec->story}}</p>
+                        </div>
+                    </section>
+                </div>
             </div>
-            <div class="col-md-6">
-                <input type="hidden" id="map_lat" value="{{$spec->map_lat}}">
-                <input type="hidden" id="map_lng" value="{{$spec->map_lng}}">
-                <div id="gmap"></div>
-            </div>
-            <div class="col-md-6">
-                <div id="pano"></div>
-            </div>
+
         </div>
-        <div class="col-md-6 bg-white" id="contentfix">
-            <h1 class="specname">{{$spec->name}} </h1>
-            <h2 class="spectitle">{{$spec->occupation}}</h2>
-            <p><b>Mijn Verhaal: </b>{{$spec->story}}</p>
-            <p><b>Mijn Missie: </b>{{$spec->mission}}</p>
-        </div>
-        <div class="col-md-3">
-            <div class="col-md-12">
-                <div class="col-md-12 bg-sand list-block" style="z-index: 1">
-                    <h3  class="specialismtitle">Werkgebieden</h3>
-                    <ul class="star-list">
-                        @if(!$spec->specialisms->isEmpty())
-                            @foreach($spec->specialisms as $specialism)
-                                <li><a href="/werkgebied/{{$specialism->name}}">{{$specialism->name}}</a></li>
+        <div class="card card-profile ">
+            <div class="card-body ">
+                <div class="justify-content-center">
+                    <h5 class="Prices text-center Roboto-light Starfish-Logo-with-text-blue">Meer
+                        informatie</h5>
+                    <hr>
+                </div>
+                <section class="row">
+                    <div class="col-md-4">
+                        <h5 class="Roboto-light Starfish-Logo-with-text-blue">Plaatje</h5>
+
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="Roboto-light Starfish-Logo-with-text-blue">Diverse</h5>
+                        @if(!$spec->diverse->isEmpty())
+                            @foreach($spec->diverse as $diverse)
+                                Divers Document: <a href="{{substr($diverse->target, 6)}}">{{$diverse->name}}</a>
                             @endforeach
                         @else
-                            <li>Geen werkgebied</li>
+                            <li>Geen diversen</li>
                         @endif
-                    </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="Roboto-light Starfish-Logo-with-text-blue">Contact</h5>
+                        <p><b>Bedrijf</b> {{$spec->company}}</p>
+                        <p><b>Adres</b> {{$spec->address}}</p>
+                        <p><b>Stad:</b> {{$spec->postal_code}}, {{$spec->city}}</p>
+                        <p><b>Nummer:</b> {{$spec->phone_number}} / {{$spec->mobile_phone}}</p>
+                        <p><b>Email:</b> {{$spec->email}}</p>
+                        <p><b>Website:</b> {{$spec->url}}</p>
+                        <input type="hidden" id="map_lat" value="{{$spec->map_lat}}">
+                        <input type="hidden" id="map_lng" value="{{$spec->map_lng}}">
+                        <div id="gmap"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="card card-profile ">
+            <div class="card-body ">
+                <div class="justify-content-center">
+                    <h5 class="Prices text-center Roboto-light Starfish-Logo-with-text-blue">Artikelen geschreven
+                        door: {{$spec->name}}</h5>
+                    <hr>
                 </div>
-                <hr>
-                @if(!$spec->images->count() == 0)
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="z-index: 0">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            @for($y = 0; $y < $spec->images->count(); $y++)
-                                @if($y == 0)
-                                    <li data-target="#myCarousel" data-slide-to="{{$y}}" class="active"></li>
-                                @else
-                                    <li data-target="#myCarousel" data-slide-to="{{$y}}"></li>
-                                @endif
-                            @endfor
-                        </ol>
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <?php $firstit = true ?>
-                            @foreach($spec->images as $image)
-                                @if($firstit)
-                                    <div class="item active">
-                                        {{$firstit = false}}
-                                        @else
-                                            <div class="item">
-                                                @endif
-                                                <img src="{{urldecode(asset('images/avatars/specialists/images/'.$image->path)) }}" alt="" width="100%">
-                                                <div class="carousel-caption">
-                                                    <p>{{$image->caption}}</p>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                        <!-- Left and right controls -->
-                                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                                <span class="glyphicon glyphicon-chevron-left"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                                <span class="glyphicon glyphicon-chevron-right"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                    </div>
-                        </div>
-                    </div>
-                @else
-                            <div class="col-md-12 bg-light list-block" id="contentfix">
-                            <h2>Deze specialist heeft geen afbeeldingen</h2>
-                            </div>
-                        @endif
-                <hr>
-                    <div class="col-md-12 bg-sand list-block">
-                        <h3  class="specialismtitle">DIVERSEN</h3>
-                        <ul class="star-list">
-                            @if(!$spec->diverse->isEmpty())
-                                @foreach($spec->diverse as $diverse)
-                                    <li><a href="{{$diverse->target}}">{{$diverse->name}}</a></li>
-                                @endforeach
-                            @else
-                                <li>Geen diversen</li>
-                            @endif
-                        </ul>
-                    </div>
             </div>
         </div>
     </div>

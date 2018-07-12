@@ -7,23 +7,32 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/specialist.css')}}"
 @endsection
 @section('main')
-    <div class="col-md-12">
-        {!! Breadcrumbs::render('complaint', $complaint) !!}
-    </div>
-    <div class="col-md-12" id="wrapper">
-        <div class="col-md-9 bg-white" id="contentfix">
-            <h1 class="specname">{{$complaint->name}} </h1>
-            <p><b>Beschrijving </b>{{$complaint->description}}</p>
-        </div>
-        <div class="col-md-3">
-            <div class="col-md-12">
-                <div class="col-md-12 bg-sand list-block">
-                    <h3  class="specialismtitle">dingen</h3>
-                    <ul class="star-list">
-                            <li>Geen dingen</li>
-                    </ul>
+    <div class="first-section">
+        <div class="row">
+            <div class="col-md-5">
+                <img alt="{{$complaint->name}}" class="img-circle center-block"
+                     src="{{substr($complaint->complaint_image, 6)}}"
+                     width="80%">
+            </div>
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class=" Starfish-Logo-with-text-blue">{{$complaint->name}} </h2>
+                        <p><b>Beschrijving </b>{{$complaint->description}}</p>
+                    </div>
                 </div>
-                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="second-section">
+        <div class="card homepage-card-Gray">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="card-title text-center Starfish-Logo-with-text-blue ">Waar kan je terecht met je
+                            klacht?</h4>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

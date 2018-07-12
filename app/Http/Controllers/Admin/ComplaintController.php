@@ -3,8 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Complaint;
+use App\Models\Therapy;
+use Barryvdh\Debugbar\Middleware\Debugbar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use function MongoDB\BSON\toJSON;
+use function PHPSTORM_META\type;
+use Spatie\Activitylog\Models\Activity;
+use Intervention\Image\Facades\Image;
+use App\Models\Image as ImageC;
 
 /**
  * Class ComplaintController
@@ -20,34 +27,35 @@ class ComplaintController extends Controller
     public function index()
     {
         $fdir = [
-            'id' =>  'asc',
+            'id' => 'asc',
             'name' => 'asc',
             'short_description' => 'asc',
-            'updated_at' => 'asc',
+            'complaint_image' => 'asc',
+            'updated_at' => 'asc'
         ];
         $column = isset($_GET['order']) ? $_GET['order'] : "id";
-        if(isset($_GET['dir'])) {
+        if (isset($_GET['dir'])) {
             $dir = $_GET['dir'];
         } else {
             $dir = 'asc';
         }
         $complaints = Complaint::query();
-        $complaints = $complaints->select('id', 'name', 'short_description', 'updated_at');
-        if(isset($_GET['filter_type']) && isset($_GET['q'])) {
+        $complaints = $complaints->select('id', 'name', 'short_description', 'complaint_image', 'updated_at');
+        if (isset($_GET['filter_type']) && isset($_GET['q'])) {
             $filter_type = $_GET['filter_type'];
-            $q =  $_GET['q'];
+            $q = $_GET['q'];
             $complaints->where($filter_type, "LIKE", "%$q%");
         }
         $complaints = $complaints->orderBy($column, $dir)->paginate('10', ['*'], 'complaints');
-        $dir =  $dir == 'asc' ? 'desc' : 'asc';
-        foreach ($fdir as $key=>$value) {
-            if($key == $column) {
-                $fdir[ $key] = $dir;
+        $dir = $dir == 'asc' ? 'desc' : 'asc';
+        foreach ($fdir as $key => $value) {
+            if ($key == $column) {
+                $fdir[$key] = $dir;
             } else {
                 $fdir[$value] = 'asc';
             }
         }
-        return view('admin.complaints.index', compact('complaints' , 'fdir', 'column'));
+        return view('admin.complaints.index', compact('complaints', 'fdir', 'column'));
     }
 
     /**
@@ -57,7 +65,8 @@ class ComplaintController extends Controller
      */
     public function create()
     {
-        return view('admin.complaints.create');
+        $therapies = Therapy::paginate(12);
+        return view('admin.complaints.create',  compact('therapies'));
 
     }
 
@@ -69,26 +78,59 @@ class ComplaintController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => "required",
-            'description' => "required",
-            'short_description' => "required",
-        ]);
+        $image_path =  $request->has($request->file($request->complaint_image)) ? 'public/images/avatars/complaints/'.$request->complaint_image_filename : 'public/images/anonymous.png';
 
-        $complaint = Complaint::create([
-            "name" => $request->name,
-            "description" => $request->description,
-            "short_description" => $request->short_description,
-        ]);
 
-        activity('comp-log')
-            ->causedBy(auth()->user())
-            ->performedOn($complaint)
-            ->withProperties(['action' => 'created'])
-            ->log('Klacht:  '.$complaint->name.' aangemaakt door:'.auth()->user()->username);
-        \Session::flash("success", "Klacht: ".$complaint->name." succesvol aangemaakt");
+        $input = array(
+            'name' => $request->name,
+            'description' => $request->description,
+            'short_description' => $request->short_description,
+            'complaint_image' => $image_path,
+        );
+
+        $complaint = Complaint::create($input);
+
+
+        foreach ($request->complaint_image as $image => $imagedata) {
+            if ($request->hasFile('images.' . $image . '.file')) {
+                $file = $request->file('images.' . $image . '.file');
+                $filename = str_replace(' ', '_', $input['name']) . "_" . $image;
+                $ext = $file->extension();
+                $full_filename = $filename . "." . $ext;
+                $path = $file->storeAs('/images/avatars/complaints/', $full_filename);
+                $caption = $imagedata['caption'];
+                $im = new ImageC();
+                $im->path = $path;
+                $im->caption = $caption;
+                $im = ImageC::where('path', $path)->first();
+                $complaint->images()->attach($im);
+            }
+        }
+
+
         return redirect()->route('admin.complaints.show', $complaint->id);
     }
+
+    /**
+     * @param Request $request
+     * @return bool|string
+     */
+    public function saveImage(Request $request) {
+        $cropped_value = $request->input("complaint_image_cropped"); //// Width,height,x,y,rotate for cropping
+        $cp_v = explode("," ,$cropped_value); /// Explode width,height,x etc
+        $file = $request->file('complaint_image');
+        $file_name = Controller::quickRandom().".".$file->extension();
+        if ($request->hasFile('complaint_image')) {
+            $file->storeAs("images/avatars/uncropped", $file_name); // Original Image Path
+            $img = Image::make($file->getRealPath());
+            $path2 = public_path("images/avatars/complaints/$file_name"); ///  Cropped Image Path
+            $img->crop($cp_v[0], $cp_v[1], $cp_v[2], $cp_v[3])->save($path2); // Crop and Save
+        } else {
+            return false;
+        }
+        return $file_name;
+    }
+
 
     /**
      * Display the specified resource.
@@ -119,7 +161,7 @@ class ComplaintController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param Complaint                 $complaint
+     * @param Complaint $complaint
      *
      * @return void
      */
@@ -140,8 +182,8 @@ class ComplaintController extends Controller
             ->causedBy(auth()->user())
             ->performedOn($complaint)
             ->withProperties(['action' => 'updated'])
-            ->log('Klacht:  '.$complaint->name.' bijgewerkt door:'.auth()->user()->username);
-        \Session::flash("success", "Klacht: ".$complaint->name." succesvol bijgewerkt");
+            ->log('Klacht:  ' . $complaint->name . ' bijgewerkt door:' . auth()->user()->username);
+        \Session::flash("success", "Klacht: " . $complaint->name . " succesvol bijgewerkt");
         return redirect()->route('admin.complaints.show', $complaint);
     }
 
@@ -164,8 +206,8 @@ class ComplaintController extends Controller
             ->causedBy(auth()->user())
             ->performedOn($complaint)
             ->withProperties(['action' => 'destroyed'])
-            ->log('Klacht:  '.$name.' verwijderd door: '.auth()->user()->username);
-        \Session::flash("success", "Klacht: ".$name." succesvol verwijderd");
+            ->log('Klacht:  ' . $name . ' verwijderd door: ' . auth()->user()->username);
+        \Session::flash("success", "Klacht: " . $name . " succesvol verwijderd");
 
         return redirect()->route("admin.complaints.index");
     }

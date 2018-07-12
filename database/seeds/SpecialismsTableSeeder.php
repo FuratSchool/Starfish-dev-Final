@@ -11,7 +11,7 @@ class SpecialismsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('en_Us');
-        $count = 100;
+        $count = 20;
         foreach (range(0, $count) as $index) {
             print_r( "Seeding {$index} of {$count}\r");
             Specialism::create([

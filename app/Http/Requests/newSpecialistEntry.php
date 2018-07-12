@@ -29,6 +29,9 @@ class newSpecialistEntry extends FormRequest
     {
         return [
             'name' => 'required',
+            'adverb' => 'required',
+            'sur_name' => 'required',
+            'gender' => 'required',
             'occupation' => 'required',
             'lat' => 'required',
             'lng' => 'required',

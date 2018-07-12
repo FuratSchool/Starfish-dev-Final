@@ -1,37 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Anton');
-/* Style to make the video fullscreen and on the background */
-.background-video{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: -100;
-}
 
-/*noinspection ALL*/
-.background-video video{
-    position: absolute;
-    top: 0;
-    left: 0;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -10;
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    background-size: cover;
-}
-
-.background-video:after{
-    content: ' ';
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
+.homepage_landing_image {
+    background-image: url("../images/homepage_landing_image.jpg");
+    background-position: center;
+    height: 500px;
+    text-align: center;
+    color: #898B8A !important;
+    margin-bottom: 0px !important;
 }
 
 .top-navigation {
@@ -167,4 +142,65 @@ div.row {
 }
 #cookie_popup label {
     color: white;
+}
+/*
+################  Misc  ################
+*/
+
+.center-block {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+################  Buttons  ################
+*/
+
+.btn-starfish-blue {
+    background-color: #27b9cb !important;
+    color: #fff !important;
+}
+
+/*
+################  Navigation  ################
+*/
+.bg-white {
+    background-color: #fff !important;
+}
+
+.navbar.navbar-fixed-top.fixed-theme {
+    background-color: #222;
+    border-color: #080808;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .8);
+}
+
+.navbar-brand.fixed-theme {
+    font-size: 18px;
+}
+
+.navbar.navbar-fixed-top.fixed-theme {
+    transition: 0.8s;
+    -webkit-transition: 0.8s;
+}
+
+
+.navigation-shadow {
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.1) !important;
+    -moz-box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.1) !important;
+}
+
+.nav-item-color > a {
+    color: #5C6160 !important;
+    font-size: 22px;
+    font-family: "Roboto Thin" !important;
+    text-align: center !important;
+}
+
+.nav-item-color-active > a {
+    color: #27b9cb !important;
+    font-size: 22px;
+    font-family: "Roboto Thin" !important;
+    text-align: center !important;
 }

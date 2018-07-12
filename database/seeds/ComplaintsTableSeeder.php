@@ -9,7 +9,7 @@ use App\Models\Complaint;
 class ComplaintsTableSeeder extends Seeder {
     public function run() {
         $faker = Faker::create('en_Us');
-        $count = 100;
+        $count = 20;
         foreach (range(1, $count) as $index) {
             print_r( "Seeding {$index} of {$count}\r");
             Complaint::create([

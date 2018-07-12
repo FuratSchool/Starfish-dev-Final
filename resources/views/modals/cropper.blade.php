@@ -1,4 +1,4 @@
-<div id="cropper" class="modal fade" role="dialog">
+<div id="cropper" class="modal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">

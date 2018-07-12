@@ -10,12 +10,34 @@
 |
 */
 Route::get('/', 'HomeController@landing')->name('landing');
+Route::get('/health', 'healthController@index')->name('health');
+Route::get('/Philosophy', 'philosophyController@index')->name('philosophy');
+
+Route::get('/treatments', 'therapycontroller@index')->name('treatments');
+Route::get('/treatment/{name}', 'therapycontroller@show')->name('treatment');
+
+Route::get('/Kids', 'HomeController@landing')->name('Kids');
+Route::get('/Pets', 'HomeController@landing')->name('Pets');
+Route::get('/Webshop', 'HomeController@landing')->name('Webshop');
+
+Route::get('/contact', 'contactController@index')->name('contact');
+
+Route::get('/registerVenture', 'footerController@registerventure')->name('registerventure');
+Route::get('/legal', 'footerController@legal')->name('legal');
+Route::get('/faqs', 'footerController@faqs')->name('faqs');
+Route::get('/helpCentre', 'footerController@partnerhelpcentre')->name('helpcentre');
 
 Route::get('/specialisten', 'SpecialistController@index')->name('listSpecialists');
 Route::get('/specialist/{name}', 'SpecialistController@show')->name('specialist');
 
 Route::get('/klachten', 'ComplaintController@index')->name('complaints');
 Route::get('/klacht/{name}', 'ComplaintController@show')->name('complaint');
+
+Route::get('/artikelen', 'articlecontroller@index')->name('articles');
+Route::get('/artikel/{name}', 'articlecontroller@show')->name('article');
+
+Route::get('/recepten', 'receptController@index')->name('recipes');
+Route::get('/recept/{name}', 'receptController@show')->name('recipe');
 
 Route::get('/werkgebieden', 'SpecialismController@index')->name('specialisms');
 Route::get('/werkgebied/{name}', 'SpecialismController@show')->name('specialism');
@@ -95,10 +117,39 @@ Route::group(['namespace' => 'Admin' ,'prefix' => '/admin',  'as' => 'admin.', '
     Route::get('/klachten', 'ComplaintController@index')->name('complaints.index');
     Route::get('/klachten/nieuw', 'ComplaintController@create')->name('complaints.create');
     Route::post('/klachten/nieuw', 'ComplaintController@store')->name('complaints.store');
+    Route::post('/klachten/nieuw/klachtafbeelding', 'ComplaintController@saveImage')->name('complaints.saveImage');
     Route::get('/klachten/{complaint}', 'ComplaintController@show')->name('complaints.show');
     Route::get('/klachten/{complaint}/bewerken', 'ComplaintController@edit')->name('complaints.edit');
     Route::patch('/klachten/{complaint}', 'ComplaintController@update')->name('complaints.update');
     Route::delete('/klachten/{complaint}', 'ComplaintController@destroy')->name('complaints.destroy');
+
+    Route::get('/paginas', 'pagesController@index')->name('pages.index');
+    Route::get('/paginas/nieuw', 'pagesController@create')->name('pages.create');
+    Route::post('/paginas/nieuw', 'pagesController@store')->name('pages.store');
+    Route::get('/paginas/{page}', 'pagesController@show')->name('pages.show');
+    Route::get('/paginas/{page}/bewerken', 'pagesController@edit')->name('pages.edit');
+    Route::patch('/paginas/{page}', 'pagesController@update')->name('pages.update');
+    Route::delete('/paginas/{page}', 'pagesController@destroy')->name('pages.destroy');
+
+
+    Route::get('/recepten', 'RecipeController@index')->name('recipes.index');
+    Route::get('/recepten/nieuw', 'RecipeController@create')->name('recipes.create');
+    Route::post('/recepten/nieuw', 'RecipeController@store')->name('recipes.store');
+    Route::post('/recepten/nieuw/primaryimage', 'RecipeController@savePrimaryImage')->name('recipes.saveImage');
+    Route::post('/recepten/nieuw/secondaryimage', 'RecipeController@saveSecondaryImage')->name('recipes.saveImage');
+    Route::get('/recepten/{recipe}', 'RecipeController@show')->name('recipes.show');
+    Route::get('/recepten/{recipe}/bewerken', 'RecipeController@edit')->name('recipes.edit');
+    Route::patch('/recepten/{recipe}', 'RecipeController@update')->name('recipes.update');
+    Route::delete('/recepten/{recipe}', 'RecipeController@destroy')->name('recipes.destroy');
+
+    Route::get('/artikelen', 'ArticleController@index')->name('articles.index');
+    Route::get('/artikelen/nieuw', 'ArticleController@create')->name('articles.create');
+    Route::post('/artikelen/nieuw', 'ArticleController@store')->name('articles.store');
+    Route::post('/artikelen/nieuw/artikelafbeelding', 'ArticleController@saveImage')->name('articles.saveImage');
+    Route::get('/artikelen/{article}', 'ArticleController@show')->name('articles.show');
+    Route::get('/artikelen/{article}/bewerken', 'ArticleController@edit')->name('articles.edit');
+    Route::patch('/artikelen/{article}', 'ArticleController@update')->name('articles.update');
+    Route::delete('/artikelen/{article}', 'ArticleController@destroy')->name('articles.destroy');
 
     Route::get('/therapieen', 'TherapyController@index')->name('therapies.index');
     Route::get('/therapieen/nieuw', 'TherapyController@create')->name('therapies.create');
@@ -107,6 +158,22 @@ Route::group(['namespace' => 'Admin' ,'prefix' => '/admin',  'as' => 'admin.', '
     Route::get('/therapieen/{therapy}/bewerken', 'TherapyController@edit')->name('therapies.edit');
     Route::patch('/therapieen/{therapy}', 'TherapyController@update')->name('therapies.update');
     Route::delete('/therapieen/{therapy}', 'TherapyController@destroy')->name('therapies.destroy');
+
+    Route::get('/wellness', 'wellnessController@index')->name('wellness.index');
+    Route::get('/wellness/nieuw', 'wellnessController@create')->name('wellness.create');
+    Route::post('/wellness/nieuw', 'wellnessController@store')->name('wellness.store');
+    Route::get('/wellness/{wellness}', 'wellnessController@show')->name('wellness.show');
+    Route::get('/wellness/{wellness}/bewerken', 'wellnessController@edit')->name('wellness.edit');
+    Route::patch('/wellness/{wellness}', 'wellnessController@update')->name('wellness.update');
+    Route::delete('/wellness/{wellness}', 'wellnessController@destroy')->name('wellness.destroy');
+
+    Route::get('/coaching', 'coachingController@index')->name('coaching.index');
+    Route::get('/coaching/nieuw', 'coachingController@create')->name('coaching.create');
+    Route::post('/coaching/nieuw', 'coachingController@store')->name('coaching.store');
+    Route::get('/coaching/{coaching}', 'coachingController@show')->name('coaching.show');
+    Route::get('/coaching/{coaching}/bewerken', 'coachingController@edit')->name('coaching.edit');
+    Route::patch('/coaching/{coaching}', 'coachingController@update')->name('coaching.update');
+    Route::delete('/coaching/{coaching}', 'coachingController@destroy')->name('coaching.destroy');
 
     Route::get('/diversen', 'DiverseController@index')->name('diverse.index');
     Route::get('/diversen/nieuw', 'DiverseController@create')->name('diverse.create');

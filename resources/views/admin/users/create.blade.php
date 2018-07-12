@@ -52,14 +52,20 @@
                     </div>
                 </div>
                 <div class="form-group @if($errors->has('first_name') || $errors->has('sur_name')) has-error has-feedback @endif">
-                    <label for="first_name" class="col-md-4 control-label">Voor- en achternaam</label>
-                    <div class="col-md-3">
+                    <label for="first_name" class="col-md-4 control-label">Voor-, tussenvoegsel en achternaam</label>
+                    <div class="col-md-2">
                         <input id="first_name" type="text" class="form-control" name="first_name"  placeholder=" Voornaam"value="{{old('first_name')}}">
                         @if ($errors->has('first_name'))
                             <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                         @endif
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
+                        <input id="adverb" type="text" class="form-control" name="adverb"  placeholder="Tussenvoegsel" value="{{old('adverb')}}">
+                        @if ($errors->has('adverb'))
+                            <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                        @endif
+                    </div>
+                    <div class="col-md-2">
                         <input id="sur_name" type="text" class="form-control" name="sur_name"  placeholder="Achternaam" value="{{old('last_name')}}">
                         @if ($errors->has('sur_name'))
                             <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
@@ -69,7 +75,12 @@
                         <span class="help-block">
                             <strong>{{$errors->first('first_name')}}</strong>
                         </span>
-                  @elseif($errors->has('sur_name'))
+                  @elseif($errors->has('adverb'))
+                        <span class="help-block">
+                            <strong>{{$errors->first('adverb')}}</strong>
+                        </span>
+
+                    @elseif($errors->has('sur_name'))
                         <span class="help-block">
                             <strong>{{$errors->first('sur_name')}}</strong>
                         </span>

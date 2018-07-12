@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Specialist;
+use App\Models\Article;
+
+
 
 
 /**
@@ -14,6 +18,10 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function landing(){
-        return view('landing');
+        $articles = Article::paginate(12);
+        $specs = Specialist::paginate(2);
+
+        return view('landing', compact('articles', 'specs'));
+
     }
 }

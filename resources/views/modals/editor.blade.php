@@ -1,12 +1,16 @@
-<div id="storyEditor" class="modal fade bs-example-modal-lg editor" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-xl" role="document">
+<div id="storyEditor" class="modal  editor" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>a
             <div class="modal-header">
                 <h4 class="modal-title"><b> </b></h4>
             </div>
+
             <div class="modal-body">
                 <div class="modal-toolbar">
-                    <div class="btn-toolbar" role="toolbar">
+                    <div class="btn-toolbar justify-content-center" role="toolbar">
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-action btn-lg" id="heading1" style="font-family: 'Times New Roman',serif; font-weight: 700">H1</button>
                             <button type="button" class="btn btn-action btn-lg" id="heading2" style="font-family: 'Times New Roman',serif; font-weight: 700">H2</button>
@@ -56,3 +60,4 @@
         </div>
     </div>
 </div>
+

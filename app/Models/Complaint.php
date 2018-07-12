@@ -13,7 +13,7 @@ class Complaint extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'description', 'short_description'];
+    protected $fillable = ['name', 'description','short_description', 'complaint_image'];
 
     /**
      * @param $query
@@ -25,10 +25,12 @@ class Complaint extends Model
         return $query;
     }
 
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function tasks() {
         return $this->morphMany('complaints', 'subject');
     }
+
 }

@@ -9,7 +9,7 @@ use App\Models\Therapy;
 class TherapiesTableSeeder extends Seeder {
     public function run() {
         $faker = Faker::create('en_Us');
-        $count = 100;
+        $count = 20;
         foreach (range(1, $count) as $index) {
             print_r( "Seeding {$index} of  {$count}\r");
             Therapy::create([
