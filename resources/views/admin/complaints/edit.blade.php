@@ -10,7 +10,9 @@
         <div class="btitle">Klacht bewerken</div>
         <hr class="bdivider">
         <div class="bcontent">
-            <form class="form-horizontal " role="form" method="POST" action="{{ route('admin.complaints.update', $complaint) }}" enctype="multipart/form-data" id="newspec">
+            <form class="form-horizontal " role="form" method="POST"
+                  action="{{ route('admin.complaints.update', $complaint) }}" enctype="multipart/form-data"
+                  id="newcomplaint">
                 {{method_field("PATCH")}}
                 {{ csrf_field() }}
                 <div class="row">
@@ -54,15 +56,36 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('complaint_image') ? ' has-error has-feedback' : '' }}">
+                            <label for="complaint_image" class="col-md-2 control-label" style="hyphens: auto">klacht-afbeelding</label>
+                            <div class="col-md-8">
+                                <a href="{{substr($complaint->complaint_image, 6)}}" target="_blank"
+                                   style="color: white; text-decoration: underline">Huidige afbeelding</a>
+                                <input type="hidden" name="complaint_image_cropped" id="complaint_image_cropped"
+                                       value="">
+                                <input type="hidden" name="complaint_image_filename" id="complaint_image_filename">
+                                <input id="complaint_image" type="file" name="complaint_image" accept="image/*">
+                                <span class="help-block">Ondersteunde bestandstype: PNG, JPEG, GIF</span>
+                                @if ($errors->has('complaint_image'))
+                                    <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('complaint_image') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-new col-offset-md-4 col-md-4">Bewerken</button>
             </form>
         </div>
     </div>
-
+    @include('modals.editor')
+    @include('modals.cropper')
 @endsection
 @section('scripts')
     @parent
-
+    <script type="text/javascript" src="{{asset('js/BudEdit.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/complaint_image.js')}}"></script>
+    <script src="{{asset('js/cropper.min.js')}}"></script>
 @endsection

@@ -139,4 +139,86 @@ class RecipeController extends Controller
         return view("admin.recipes.show", compact('recipe'));
 
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Recipe $recipe
+     *
+     * @return void
+     */
+    public function edit(Recipe $recipe)
+    {
+        return view("admin.recipes.edit", compact('recipe'));
+    }
+
+    public function update(Request $request, Recipe $recipe)
+    {
+
+        $recipe->name = $request->name;
+        $recipe->ingredients = $request->ingredients;
+        $recipe->preperation = $request->preperation;
+        $recipe->factoid = $request->factoid;
+        if ($request->primary_image_filename) {
+            $recipe->primary_image = 'public/images/avatars/articles/' . $request->primary_image_filename;
+        }
+
+        $input = array(
+            'name' => $request->name,
+            'ingredients' => $request->ingredients,
+            'preperation' => $request->preperation,
+            'factoid' => $request->factoid,
+            'primary_image' => $request->primary_image,
+
+        );
+
+        $recipe->save();
+
+        $recipe->images()->detach();
+        foreach ($request->primary_image as $image => $imagedata) {
+            if ($request->hasFile('images.' . $image . '.file')) {
+                $file = $request->file('images.' . $image . '.file');
+                $filename = str_replace(' ', '_', $input['name']) . "_" . $image;
+                $ext = $file->extension();
+                $full_filename = $filename . "." . $ext;
+                $path = $file->storeAs('/images/avatars/recipes/images', $full_filename);
+                $caption = $imagedata['caption'];
+                $im = new ImageC();
+                $im->path = $path;
+                $im->caption = $caption;
+                $im = ImageC::where('path', $path)->first();
+                $recipe->images()->attach($im);
+
+            }
+        }
+
+        $recipe->images()->detach();
+        \Session::flash("success", "Recept: " . $recipe->name . " succesvol bijgewerkt");
+        return redirect()->route('admin.recipes.show', $recipe);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Recipe $recipe
+     *
+     * @return void
+     */
+    public function destroy(Recipe $recipe)
+    {
+        $name = $recipe->name;
+        try {
+            $recipe->delete();
+        } catch (\Exception $exception) {
+            return redirect()->back()->withException($exception);
+        }
+        activity('comp-log')
+            ->causedBy(auth()->user())
+            ->performedOn($recipe)
+            ->withProperties(['action' => 'destroyed'])
+            ->log('Recept:  ' . $name . ' verwijderd door: ' . auth()->user()->username);
+        \Session::flash("success", "Wellness: " . $name . " succesvol verwijderd");
+
+        return redirect()->route("admin.recipes.index");
+    }
 }

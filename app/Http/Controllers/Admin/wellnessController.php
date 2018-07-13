@@ -71,16 +71,74 @@ class wellnessController extends Controller
         return redirect()->route('admin.wellness.show', $wellness->id);
     }
 
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Wellness $wellness
+     *
+     * @return void
+     */
+    public function edit(Wellness $wellness)
+    {
+        return view("admin.wellness.edit", compact('wellness'));
+    }
+
     /**
      * Display the specified resource.
      *
-     * @param Complaint $complaint
+     * @param Wellness $wellness
      *
      * @return void
      */
     public function show(Wellness $wellness)
     {
         return view("admin.wellness.show", compact('wellness'));
+    }
 
+    public function update(Request $request, Wellness $wellness)
+    {
+
+
+        $input = array(
+            'name' => $request->name,
+            'description' => $request->description,
+            'short_description' => $request->short_description,
+        );
+
+        $wellness->name = $request->name;
+        $wellness->description = $request->description;
+        $wellness->short_description = $request->short_description;
+
+        $wellness->save();
+
+
+        \Session::flash("success", "Wellness: " . $wellness->name . " succesvol bijgewerkt");
+        return redirect()->route('admin.wellness.show', $wellness);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Wellness $wellness
+     *
+     * @return void
+     */
+    public function destroy(Wellness $wellness)
+    {
+        $name = $wellness->name;
+        try {
+            $wellness->delete();
+        } catch (\Exception $exception) {
+            return redirect()->back()->withException($exception);
+        }
+        activity('comp-log')
+            ->causedBy(auth()->user())
+            ->performedOn($wellness)
+            ->withProperties(['action' => 'destroyed'])
+            ->log('Wellness:  ' . $name . ' verwijderd door: ' . auth()->user()->username);
+        \Session::flash("success", "Wellness: " . $name . " succesvol verwijderd");
+
+        return redirect()->route("admin.wellness.index");
     }
 }

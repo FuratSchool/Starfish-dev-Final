@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\Coaching;
+use App\Models\Complaint;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -82,5 +83,63 @@ class coachingController extends Controller
     {
         return view("admin.coaching.show", compact('coaching'));
 
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Coaching $coaching
+     *
+     * @return void
+     */
+    public function edit(Coaching $coaching)
+    {
+        return view("admin.coaching.edit", compact('coaching'));
+    }
+
+    public function update(Request $request, Coaching $coaching)
+    {
+
+
+        $input = array(
+            'name' => $request->name,
+            'description' => $request->description,
+            'short_description' => $request->short_description,
+        );
+
+        $coaching->name = $request->name;
+        $coaching->description = $request->description;
+        $coaching->short_description = $request->short_description;
+
+        $coaching->save();
+
+
+        \Session::flash("success", "Coaching: " . $coaching->name . " succesvol bijgewerkt");
+        return redirect()->route('admin.coaching.show', $coaching);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Article $coaching
+     *
+     * @return void
+     */
+    public function destroy(Complaint $coaching)
+    {
+        $name = $coaching->name;
+        try {
+            $coaching->delete();
+        } catch (\Exception $exception) {
+            return redirect()->back()->withException($exception);
+        }
+        activity('comp-log')
+            ->causedBy(auth()->user())
+            ->performedOn($coaching)
+            ->withProperties(['action' => 'destroyed'])
+            ->log('Artikel:  ' . $name . ' verwijderd door: ' . auth()->user()->username);
+        \Session::flash("success", "Artikel: " . $name . " succesvol verwijderd");
+
+        return redirect()->route("admin.coaching.index");
     }
 }

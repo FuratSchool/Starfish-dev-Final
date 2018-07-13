@@ -111,25 +111,6 @@ class ComplaintController extends Controller
         return redirect()->route('admin.complaints.show', $complaint->id);
     }
 
-    /**
-     * @param Request $request
-     * @return bool|string
-     */
-    public function saveImage(Request $request) {
-        $cropped_value = $request->input("complaint_image_cropped"); //// Width,height,x,y,rotate for cropping
-        $cp_v = explode("," ,$cropped_value); /// Explode width,height,x etc
-        $file = $request->file('complaint_image');
-        $file_name = Controller::quickRandom().".".$file->extension();
-        if ($request->hasFile('complaint_image')) {
-            $file->storeAs("images/avatars/uncropped", $file_name); // Original Image Path
-            $img = Image::make($file->getRealPath());
-            $path2 = public_path("images/avatars/complaints/$file_name"); ///  Cropped Image Path
-            $img->crop($cp_v[0], $cp_v[1], $cp_v[2], $cp_v[3])->save($path2); // Crop and Save
-        } else {
-            return false;
-        }
-        return $file_name;
-    }
 
 
     /**
@@ -167,25 +148,64 @@ class ComplaintController extends Controller
      */
     public function update(Request $request, Complaint $complaint)
     {
-        $this->validate($request, [
-            'name' => "required",
-            'description' => "required",
-            'short_description' => "required",
-        ]);
+
+
+        $input = array(
+            'name' => $request->name,
+            'description' => $request->description,
+            'short_description' => $request->short_description,
+            'complaint_image' => $request->complaint_image,
+        );
 
         $complaint->name = $request->name;
         $complaint->description = $request->description;
         $complaint->short_description = $request->short_description;
+        if ($request->complaint_image_filename) {
+            $complaint->complaint_image = 'public/images/avatars/complaints/' . $request->complaint_image_filename;
+        }
         $complaint->save();
 
-        activity('comp-log')
-            ->causedBy(auth()->user())
-            ->performedOn($complaint)
-            ->withProperties(['action' => 'updated'])
-            ->log('Klacht:  ' . $complaint->name . ' bijgewerkt door:' . auth()->user()->username);
+        $complaint->images()->detach();
+        foreach ($request->complaint_image as $image => $imagedata) {
+            if ($request->hasFile('images.' . $image . '.file')) {
+                $file = $request->file('images.' . $image . '.file');
+                $filename = str_replace(' ', '_', $input['name']) . "_" . $image;
+                $ext = $file->extension();
+                $full_filename = $filename . "." . $ext;
+                $path = $file->storeAs('/images/avatars/complaints/images', $full_filename);
+                $caption = $imagedata['caption'];
+                $im = new ImageC();
+                $im->path = $path;
+                $im->caption = $caption;
+                $im = ImageC::where('path', $path)->first();
+                $complaint->images()->attach($im);
+            }
+        }
         \Session::flash("success", "Klacht: " . $complaint->name . " succesvol bijgewerkt");
         return redirect()->route('admin.complaints.show', $complaint);
     }
+
+    /**
+     * @param Request $request
+     * @return bool|string
+     */
+    public function saveImage(Request $request)
+    {
+        $cropped_value = $request->input("complaint_image_cropped"); //// Width,height,x,y,rotate for cropping
+        $cp_v = explode(",", $cropped_value); /// Explode width,height,x etc
+        $file = $request->file('complaint_image');
+        $file_name = Controller::quickRandom() . "." . $file->extension();
+        if ($request->hasFile('complaint_image')) {
+            $file->storeAs("images/avatars/uncropped", $file_name); // Original Image Path
+            $img = Image::make($file->getRealPath());
+            $path2 = public_path("images/avatars/complaints/$file_name"); ///  Cropped Image Path
+            $img->crop($cp_v[0], $cp_v[1], $cp_v[2], $cp_v[3])->save($path2); // Crop and Save
+        } else {
+            return false;
+        }
+        return $file_name;
+    }
+
 
     /**
      * Remove the specified resource from storage.

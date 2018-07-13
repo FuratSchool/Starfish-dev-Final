@@ -30,7 +30,7 @@
                 <div class="col-md-6">
                     @if( auth()->user()->hasAccess('admin.coaching.edit'))
                         <div class="text-center">
-                            <form method="GET" action="{{route('admin.wellness.edit', $coaching->id)}}">
+                            <form method="GET" action="{{route('admin.coaching.edit', $coaching->id)}}">
                                 <div class="form-group text-center">
                                     <input type="submit" class="form-control btn btn-primary text-white" value="Bewerken"/>
                                 </div>

@@ -130,4 +130,88 @@ class ArticleController extends Controller
         return view("admin.articles.show", compact('article'));
 
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Article $article
+     *
+     * @return void
+     */
+    public function edit(Article $article)
+    {
+        return view("admin.articles.edit", compact('article'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param Article $article
+     *
+     * @return void
+     */
+    public function update(Request $request, Article $article)
+    {
+
+
+        $input = array(
+            'name' => $request->name,
+            'description' => $request->description,
+            'short_description' => $request->short_description,
+            'article_image' => $request->article_image,
+        );
+
+        $article->name = $request->name;
+        $article->description = $request->description;
+        $article->short_description = $request->short_description;
+        if ($request->article_image_filename) {
+            $article->article_image = 'public/images/avatars/articles/' . $request->article_image_filename;
+        }
+        $article->save();
+
+        $article->images()->detach();
+        foreach ($request->article_image as $image => $imagedata) {
+            if ($request->hasFile('images.' . $image . '.file')) {
+                $file = $request->file('images.' . $image . '.file');
+                $filename = str_replace(' ', '_', $input['name']) . "_" . $image;
+                $ext = $file->extension();
+                $full_filename = $filename . "." . $ext;
+                $path = $file->storeAs('/images/avatars/articles/images', $full_filename);
+                $caption = $imagedata['caption'];
+                $im = new ImageC();
+                $im->path = $path;
+                $im->caption = $caption;
+                $im = ImageC::where('path', $path)->first();
+                $article->images()->attach($im);
+            }
+        }
+        \Session::flash("success", "Artikel: " . $article->name . " succesvol bijgewerkt");
+        return redirect()->route('admin.articles.show', $article);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Article $article
+     *
+     * @return void
+     */
+    public function destroy(Article $article)
+    {
+        $name = $article->name;
+        try {
+            $article->delete();
+        } catch (\Exception $exception) {
+            return redirect()->back()->withException($exception);
+        }
+        activity('comp-log')
+            ->causedBy(auth()->user())
+            ->performedOn($article)
+            ->withProperties(['action' => 'destroyed'])
+            ->log('Artikel:  ' . $name . ' verwijderd door: ' . auth()->user()->username);
+        \Session::flash("success", "Artikel: " . $name . " succesvol verwijderd");
+
+        return redirect()->route("admin.articles.index");
+    }
 }

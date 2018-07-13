@@ -25,6 +25,10 @@ class ImagesTableSeeder extends Seeder {
                 'specialist_id' =>  $index,
                 'image_id' => $index
             ]);
+            DB::table('complaints_images')->insert([
+                'complaint_id' => $index,
+                'image_id' => $index
+            ]);
         }
         echo "\n";
     }

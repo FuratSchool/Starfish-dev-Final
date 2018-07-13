@@ -33,4 +33,13 @@ class Complaint extends Model
         return $this->morphMany('complaints', 'subject');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function images()
+    {
+        return $this->belongsToMany('App\Models\Image', 'complaints_images', 'complaint_id', 'image_id');
+    }
+
+
 }

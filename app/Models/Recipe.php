@@ -20,4 +20,12 @@ class Recipe extends Model
         $query->where("name", "LIKE", "%$keyword%");
         return $query;
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function images()
+    {
+        return $this->belongsToMany('App\Models\Image', 'recipes_images', 'recipe_id', 'image_id');
+    }
 }

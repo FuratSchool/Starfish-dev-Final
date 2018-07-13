@@ -21,4 +21,11 @@ class Article extends Model
         return $query;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function images()
+    {
+        return $this->belongsToMany('App\Models\Image', 'articles_images', 'article_id', 'image_id');
+    }
 }

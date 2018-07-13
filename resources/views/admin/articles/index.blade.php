@@ -21,7 +21,7 @@
         <div class="col-md-2">
             <form method="GET" action="{{route('admin.articles.create')}}">
                 <div class="form-group">
-                    <input type="submit" class="btn btn-new form-control" value="Nieuwe klacht" />
+                    <input type="submit" class="btn btn-new form-control" value="Nieuw Artikel"/>
                 </div>
             </form>
         </div>
